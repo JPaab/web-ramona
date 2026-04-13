@@ -7,10 +7,10 @@ type ProductCardProps = {
 
 export default function ProductCard({ product }: ProductCardProps) {
   return (
-    <article className="group overflow-hidden rounded-4xl border border-border bg-card shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md">
-      <div className="relative aspect-4/3 overflow-hidden bg-background">
+    <article className="group overflow-hidden rounded-[2rem] border border-border bg-card shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md">
+      <div className="relative aspect-[4/4.2] overflow-hidden bg-background">
         <div className="absolute left-4 top-4 z-10 rotate-[-4deg] rounded-full border border-border bg-background px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-foreground shadow-sm">
-          JPaab
+          JPAAB
         </div>
 
         <img
@@ -19,6 +19,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]"
         />
       </div>
+
       <div className="p-5">
         <p className="font-display text-lg tracking-[0.06em] text-olive">
           DESTACADO
@@ -28,7 +29,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           {product.name}
         </h2>
 
-        <p className="mt-3 text-sm leading-6 text-muted">
+        <p className="mt-3 line-clamp-2 text-sm leading-6 text-muted">
           {product.description}
         </p>
 

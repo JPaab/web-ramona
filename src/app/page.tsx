@@ -103,21 +103,21 @@ export default function Home() {
                   </p>
                 </div>
 
-                <div className="grid gap-6 sm:grid-cols-2">
-                  <div className="-rotate-2 rounded-4xl border border-border bg-background p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md">
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div className="-rotate-2 rounded-[2rem] border border-border bg-background p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md">
                     <p className="font-display text-xl tracking-[0.08em] text-olive">
                       PERSONALIZABLE
                     </p>
-                    <p className="mt-3 text-xl font-bold leading-tight text-foreground">
+                    <p className="mt-3 max-w-[18rem] text-lg font-bold leading-tight text-foreground">
                       Hecho a tu manera, sin perder carácter.
                     </p>
                   </div>
 
-                  <div className="translate-y-4 rotate-2 rounded-4xl border border-border bg-card p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md">
+                  <div className="translate-y-3 rotate-2 rounded-[2rem] border border-border bg-card p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md">
                     <p className="font-display text-xl tracking-[0.08em] text-olive">
                       CON PRESENCIA
                     </p>
-                    <p className="mt-3 text-xl font-bold leading-tight text-foreground">
+                    <p className="mt-3 max-w-[18rem] text-lg font-bold leading-tight text-foreground">
                       Bonito, sí. Pero con intención.
                     </p>
                   </div>
@@ -132,7 +132,7 @@ export default function Home() {
         <div className="mx-auto max-w-6xl">
           <StaggerGroup className="grid gap-8 md:grid-cols-3">
             <StaggerItem>
-              <article className="rounded-3xl border border-border bg-card p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md">
+              <article className="min-h-[220px] rounded-3xl border border-border bg-card p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md">
                 <p className="font-display text-xl tracking-[0.08em] text-olive">
                   NADA PLANO
                 </p>
@@ -148,7 +148,7 @@ export default function Home() {
             </StaggerItem>
 
             <StaggerItem className="md:translate-y-2">
-              <article className="rounded-3xl border border-border bg-card p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md">
+              <article className="min-h-[220px] rounded-3xl border border-border bg-card p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md">
                 <p className="font-display text-xl tracking-[0.08em] text-olive">
                   HECHO A MEDIDA
                 </p>
@@ -164,7 +164,7 @@ export default function Home() {
             </StaggerItem>
 
             <StaggerItem>
-              <article className="rounded-3xl border border-border bg-card p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md">
+              <article className="min-h-[220px] rounded-3xl border border-border bg-card p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md">
                 <p className="font-display text-xl tracking-[0.08em] text-olive">
                   REMATE FINAL
                 </p>

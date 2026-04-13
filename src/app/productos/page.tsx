@@ -55,26 +55,22 @@ export default function ProductosPage() {
                 </p>
               </div>
 
-              <div className="grid gap-6 sm:grid-cols-2">
-                <div className="-rotate-2 rounded-4xl border border-border bg-background p-6 shadow-sm">
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div className="-rotate-2 rounded-[2rem] border border-border bg-background p-5 shadow-sm">
                   <p className="font-display text-xl tracking-[0.08em] text-olive">
                     {products.length} PIEZAS
                   </p>
-                  <p className="mt-3 text-xl font-bold leading-tight text-foreground">
-                    Lorem ipsum dolor sit amet consectetur adipiscing elit,
-                    montes condimentum odio senectus faucibus habitasse, arcu
-                    class orci aliquam a blandit.
+                  <p className="mt-3 max-w-[18rem] text-lg font-bold leading-tight text-foreground">
+                    Lorem ipsum dolor sit amet consectetur adipiscing elit.
                   </p>
                 </div>
 
-                <div className="translate-y-4 rotate-2 rounded-4xl border border-border bg-card p-6 shadow-sm">
+                <div className="translate-y-3 rotate-2 rounded-[2rem] border border-border bg-card p-5 shadow-sm">
                   <p className="font-display text-xl tracking-[0.08em] text-olive">
                     PERSONALIZABLE
                   </p>
-                  <p className="mt-3 text-xl font-bold leading-tight text-foreground">
-                    Lorem ipsum dolor sit amet consectetur adipiscing elit,
-                    montes condimentum odio senectus faucibus habitasse, arcu
-                    class orci aliquam a blandit.
+                  <p className="mt-3 max-w-[18rem] text-lg font-bold leading-tight text-foreground">
+                    Adaptable, sí. Genérico, no.
                   </p>
                 </div>
               </div>
@@ -95,7 +91,7 @@ export default function ProductosPage() {
               </div>
 
               <p className="text-sm font-medium uppercase tracking-[0.08em] text-muted">
-                La Ramona
+                JPaab
               </p>
             </div>
           </FadeIn>
