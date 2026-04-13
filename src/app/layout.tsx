@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Bebas_Neue } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -14,9 +14,15 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const bebasNeue = Bebas_Neue({
+  variable: "--font-bebas",
+  subsets: ["latin"],
+  weight: "400",
+});
+
 export const metadata: Metadata = {
-  title: "Web Ramona",
-  description: "Repostería artesanal con compra online",
+  title: "La Ramona",
+  description: "Repostería con carácter",
 };
 
 export default function RootLayout({
@@ -27,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} bg-pink-50 text-zinc-900 antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${bebasNeue.variable} bg-background text-foreground antialiased`}
       >
         <div className="flex min-h-screen flex-col">
           <Header />
