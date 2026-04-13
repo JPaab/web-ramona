@@ -1,6 +1,7 @@
 import Link from "next/link";
 import FadeIn from "@/components/motion/FadeIn";
 import FeaturedProductsCarousel from "@/components/home/FeaturedProductsCarousel";
+import DraggableSticker from "@/components/ui/DraggableSticker";
 
 export default function Home() {
   return (
@@ -10,10 +11,11 @@ export default function Home() {
           <FadeIn>
             <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
               <div className="relative rounded-[2.5rem] border border-border bg-card p-8 shadow-sm md:p-10 lg:p-12">
-                <div className="absolute -right-3 top-6 rotate-[-6deg] rounded-full border border-border bg-foreground px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white shadow-sm md:-right-6">
-                  NO ES LA TÍPICA
-                </div>
-
+                <DraggableSticker
+                  className="left-0 top-0"
+                  initialX={936}
+                  initialY={446}
+                />
                 <p className="font-display text-2xl tracking-[0.08em] text-olive">
                   JPAAB
                 </p>

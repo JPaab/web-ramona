@@ -1,9 +1,21 @@
 "use client";
 
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
+import { useState } from "react";
+
+const productTypes = [
+  { name: "Tartas", href: "/productos" },
+  { name: "Cupcakes", href: "/productos" },
+  { name: "Cheesecakes", href: "/productos" },
+  { name: "Mesas dulces", href: "/productos" },
+  { name: "Galletas decoradas", href: "/productos" },
+  { name: "Encargos personalizados", href: "/contacto" },
+];
 
 export default function Header() {
+  const [isProductsOpen, setIsProductsOpen] = useState(false);
+
   return (
     <motion.header
       className="sticky top-0 z-50 border-b border-border bg-background/85 backdrop-blur-xl"
@@ -26,12 +38,65 @@ export default function Header() {
           >
             Inicio
           </Link>
-          <Link
-            href="/productos"
-            className="text-sm font-semibold uppercase tracking-[0.12em] text-muted transition duration-200 hover:text-foreground"
+
+          <div
+            className="relative"
+            onMouseEnter={() => setIsProductsOpen(true)}
+            onMouseLeave={() => setIsProductsOpen(false)}
           >
-            Productos
-          </Link>
+            <Link
+              href="/productos"
+              className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.12em] text-muted transition duration-200 hover:text-foreground"
+            >
+              Productos
+              <motion.span
+                animate={{ rotate: isProductsOpen ? 180 : 0 }}
+                transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+                className="inline-flex h-3.5 w-3.5 items-center justify-center"
+              >
+                <span className="block text-[0.95rem] leading-none">↓</span>
+              </motion.span>
+            </Link>
+
+            <AnimatePresence>
+              {isProductsOpen ? (
+                <motion.div
+                  initial={{ opacity: 0, y: 10, scale: 0.98 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 8, scale: 0.98 }}
+                  transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
+                  className="absolute left-1/2 top-full z-40 -translate-x-1/2 pt-5"
+                >
+                  <div className="w-[520px] rounded-[2rem] border border-border bg-card p-3 shadow-[0_20px_60px_rgba(0,0,0,0.10)]">
+                    <div className="grid grid-cols-2 gap-x-3">
+                      {productTypes.map((item, index) => (
+                        <Link
+                          key={item.name}
+                          href={item.href}
+                          className={`group px-4 py-4 transition duration-300 hover:bg-background ${
+                            index < productTypes.length - 1
+                              ? "border-b border-border"
+                              : ""
+                          }`}
+                        >
+                          <div className="flex items-center justify-between gap-4">
+                            <p className="font-display text-2xl leading-none tracking-[0.04em] text-foreground transition duration-200 group-hover:text-olive">
+                              {item.name}
+                            </p>
+
+                            <span className="text-sm text-muted transition duration-200 group-hover:translate-x-1 group-hover:text-olive">
+                              →
+                            </span>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              ) : null}
+            </AnimatePresence>
+          </div>
+
           <Link
             href="/contacto"
             className="text-sm font-semibold uppercase tracking-[0.12em] text-muted transition duration-200 hover:text-foreground"
@@ -44,7 +109,7 @@ export default function Header() {
           href="/contacto"
           className="rotate-[-2deg] rounded-full border border-border bg-background px-6 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-foreground shadow-sm transition duration-300 hover:-translate-y-0.5 hover:rotate-0 hover:border-foreground hover:bg-foreground hover:text-white hover:shadow-md"
         >
-          EL MUSEO
+          Encargar
         </Link>
       </div>
     </motion.header>
