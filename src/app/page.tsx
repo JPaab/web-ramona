@@ -1,13 +1,8 @@
 import Link from "next/link";
-import { products } from "@/data/products";
-import ProductCard from "@/components/products/ProductCard";
 import FadeIn from "@/components/motion/FadeIn";
-import StaggerGroup from "@/components/motion/StaggerGroup";
-import StaggerItem from "@/components/motion/StaggerItem";
+import FeaturedProductsCarousel from "@/components/home/FeaturedProductsCarousel";
 
 export default function Home() {
-  const featuredProducts = products.slice(0, 3);
-
   return (
     <main>
       <section className="bg-background px-6 py-12 md:py-16">
@@ -59,9 +54,8 @@ export default function Home() {
                       NADA DE LO TÍPICO
                     </p>
                     <p className="mt-3 text-sm leading-6 text-muted">
-                      Lorem ipsum dolor sit amet consectetur adipiscing elit,
-                      montes condimentum odio senectus faucibus habitasse, arcu
-                      class orci aliquam a blandit.
+                      Encargos con intención, estética y una personalidad que no
+                      se queda en lo correcto.
                     </p>
                   </div>
 
@@ -70,9 +64,8 @@ export default function Home() {
                       SABOR + PRESENCIA
                     </p>
                     <p className="mt-3 text-sm leading-6 text-muted">
-                      Lorem ipsum dolor sit amet consectetur adipiscing elit,
-                      montes condimentum odio senectus faucibus habitasse, arcu
-                      class orci aliquam a blandit.
+                      Si entra por los ojos, tiene que rematar en boca. Y aquí
+                      eso no se negocia.
                     </p>
                   </div>
                 </div>
@@ -97,14 +90,14 @@ export default function Home() {
                   </h2>
 
                   <p className="mt-6 max-w-sm text-sm leading-7 text-white/75">
-                    Lorem ipsum dolor sit amet consectetur adipiscing elit,
-                    montes condimentum odio senectus faucibus habitasse, arcu
-                    class orci aliquam a blandit.
+                    La marca no va de quedar bien. Va de tener identidad propia,
+                    dejar huella y aparecer en la mesa con más intención que
+                    cualquiera.
                   </p>
                 </div>
 
                 <div className="grid gap-4 sm:grid-cols-2">
-                  <div className="-rotate-[2deg] rounded-[2rem] border border-border bg-background p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md">
+                  <div className="rotate-[-2deg] rounded-[2rem] border border-border bg-background p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md">
                     <p className="font-display text-xl tracking-[0.08em] text-olive">
                       PERSONALIZABLE
                     </p>
@@ -130,89 +123,57 @@ export default function Home() {
 
       <section className="bg-background px-6 py-10 md:py-14">
         <div className="mx-auto max-w-6xl">
-          <StaggerGroup className="grid gap-8 md:grid-cols-3">
-            <StaggerItem>
-              <article className="min-h-[220px] rounded-[2rem] border border-border bg-card p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md">
-                <p className="font-display text-xl tracking-[0.08em] text-olive">
-                  NADA PLANO
-                </p>
-                <h2 className="mt-3 text-2xl font-bold text-foreground">
-                  Cada encargo tiene que tener algo que decir.
-                </h2>
-                <p className="mt-4 text-sm leading-6 text-muted">
-                  Lorem ipsum dolor sit amet consectetur adipiscing elit, montes
-                  condimentum odio senectus faucibus habitasse, arcu class orci
-                  aliquam a blandit.
-                </p>
-              </article>
-            </StaggerItem>
-
-            <StaggerItem className="md:translate-y-2">
-              <article className="min-h-[220px] rounded-[2rem] border border-border bg-card p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md">
-                <p className="font-display text-xl tracking-[0.08em] text-olive">
-                  HECHO A MEDIDA
-                </p>
-                <h2 className="mt-3 text-2xl font-bold text-foreground">
-                  Adaptamos la idea sin volverla genérica.
-                </h2>
-                <p className="mt-4 text-sm leading-6 text-muted">
-                  Lorem ipsum dolor sit amet consectetur adipiscing elit, montes
-                  condimentum odio senectus faucibus habitasse, arcu class orci
-                  aliquam a blandit.
-                </p>
-              </article>
-            </StaggerItem>
-
-            <StaggerItem>
-              <article className="min-h-[220px] rounded-[2rem] border border-border bg-card p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md">
-                <p className="font-display text-xl tracking-[0.08em] text-olive">
-                  REMATE FINAL
-                </p>
-                <h2 className="mt-3 text-2xl font-bold text-foreground">
-                  Si se ve increíble, tiene que saber mejor todavía.
-                </h2>
-                <p className="mt-4 text-sm leading-6 text-muted">
-                  Lorem ipsum dolor sit amet consectetur adipiscing elit, montes
-                  condimentum odio senectus faucibus habitasse, arcu class orci
-                  aliquam a blandit.
-                </p>
-              </article>
-            </StaggerItem>
-          </StaggerGroup>
-        </div>
-      </section>
-
-      <section className="bg-background px-6 py-16">
-        <div className="mx-auto max-w-6xl">
           <FadeIn>
-            <div className="mb-10 flex items-end justify-between gap-6">
-              <div>
-                <p className="font-display text-xl tracking-[0.08em] text-olive">
-                  SELECCIÓN DESTACADA
-                </p>
-                <h2 className="mt-2 text-3xl font-bold text-foreground">
-                  Algunos de nuestros favoritos
-                </h2>
-              </div>
+            <div className="rounded-[2.5rem] border border-border bg-card p-8 shadow-sm md:p-10">
+              <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+                <div>
+                  <p className="font-display text-xl tracking-[0.08em] text-olive">
+                    LO QUE HAY AQUÍ
+                  </p>
+                  <h2 className="mt-3 text-3xl font-bold leading-tight text-foreground md:text-4xl">
+                    No hacemos dulces
+                    <br />
+                    para pasar desapercibidos.
+                  </h2>
+                </div>
 
-              <Link
-                href="/productos"
-                className="text-sm font-semibold text-olive transition duration-200 hover:text-olive-dark"
-              >
-                Ver todo el catálogo
-              </Link>
+                <div className="space-y-6">
+                  <div className="border-b border-border pb-5">
+                    <p className="font-display text-2xl tracking-[0.06em] text-olive">
+                      NADA PLANO
+                    </p>
+                    <p className="mt-3 max-w-2xl text-base leading-8 text-muted">
+                      Nos importa el acabado, la composición y la presencia
+                      visual porque el conjunto también forma parte del sabor.
+                    </p>
+                  </div>
+
+                  <div className="border-b border-border pb-5">
+                    <p className="font-display text-2xl tracking-[0.06em] text-olive">
+                      HECHO A MEDIDA
+                    </p>
+                    <p className="mt-3 max-w-2xl text-base leading-8 text-muted">
+                      Personalizamos encargos para celebraciones, eventos y
+                      pedidos con intención, sin perder identidad por el camino.
+                    </p>
+                  </div>
+
+                  <div>
+                    <p className="font-display text-2xl tracking-[0.06em] text-olive">
+                      REMATE FINAL
+                    </p>
+                    <p className="mt-3 max-w-2xl text-base leading-8 text-muted">
+                      Lo visual importa, pero nunca sustituye al sabor. Aquí una
+                      cosa tiene que estar a la altura de la otra.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </FadeIn>
-
-          <StaggerGroup className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-            {featuredProducts.map((product) => (
-              <StaggerItem key={product.id}>
-                <ProductCard product={product} />
-              </StaggerItem>
-            ))}
-          </StaggerGroup>
         </div>
       </section>
+      <FeaturedProductsCarousel />
     </main>
   );
 }

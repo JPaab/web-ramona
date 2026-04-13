@@ -44,7 +44,7 @@ export default function Header() {
           href="/contacto"
           className="rotate-[-2deg] rounded-full border border-border bg-background px-6 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-foreground shadow-sm transition duration-300 hover:-translate-y-0.5 hover:rotate-0 hover:border-foreground hover:bg-foreground hover:text-white hover:shadow-md"
         >
-          Encargar
+          EL MUSEO
         </Link>
       </div>
     </motion.header>

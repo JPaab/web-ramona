@@ -7,26 +7,28 @@ export default function ContactoPage() {
     <main className="bg-background px-6 py-14 md:py-18">
       <div className="mx-auto max-w-6xl">
         <FadeIn>
-          <section className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
-            <div className="relative rounded-[2.5rem] border border-border bg-card p-8 shadow-sm md:p-10 lg:p-12">
-              <div className="absolute right-4 top-5 rotate-[-5deg] rounded-full border border-border bg-foreground px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-white shadow-sm md:right-8">
-                HABLEMOS CLARO
+          <section className="rounded-[2.5rem] border border-border bg-card p-8 shadow-sm md:p-10 lg:p-12">
+            <div>
+              <div className="mb-6 flex items-start justify-between gap-4">
+                <p className="font-display text-2xl tracking-[0.08em] text-olive">
+                  CONTACTO
+                </p>
+
+                <div className="shrink-0 rotate-[-5deg] rounded-full border border-border bg-foreground px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-white shadow-sm">
+                  HABLEMOS CLARO
+                </div>
               </div>
 
-              <p className="font-display text-2xl tracking-[0.08em] text-olive">
-                CONTACTO
-              </p>
-
-              <h1 className="mt-5 font-display text-6xl leading-[0.92] tracking-[0.01em] text-foreground sm:text-7xl lg:text-[8rem]">
-                VENGA, CUÉNTANOS
+              <h1 className="font-display text-6xl leading-[0.92] tracking-[0.01em] text-foreground sm:text-7xl lg:text-[8rem]">
+                VENGA VA, CUÉNTANOS
                 <br />
                 TU VIDA
               </h1>
 
-              <p className="mt-6 max-w-xl text-lg leading-8 text-muted">
-                Lorem ipsum dolor sit amet consectetur adipiscing elit, montes
-                condimentum odio senectus faucibus habitasse, arcu class orci
-                aliquam a blandit.
+              <p className="mt-6 max-w-2xl text-lg leading-8 text-muted">
+                Si quieres un encargo con presencia, una tarta con intención o
+                algo que no se parezca a lo de siempre, escríbenos y vemos cómo
+                llevarlo a nuestra manera.
               </p>
 
               <div className="mt-10 grid gap-4 sm:grid-cols-2">
@@ -50,50 +52,6 @@ export default function ContactoPage() {
                 </div>
               </div>
             </div>
-
-            <div className="grid gap-6">
-              <div className="rounded-[2.5rem] bg-foreground p-8 text-white shadow-sm md:p-10">
-                <p className="font-display text-xl tracking-[0.08em] text-olive">
-                  JPAAB
-                </p>
-
-                <h2 className="mt-4 font-display text-4xl leading-[0.95] tracking-[0.01em] sm:text-5xl">
-                  NO VAMOS DE
-                  <br />
-                  QUEDAR BIEN.
-                  <br />
-                  VAMOS DE
-                  <br />
-                  DEJAR HUELLA.
-                </h2>
-
-                <p className="mt-6 max-w-sm text-sm leading-7 text-white/75">
-                  Lorem ipsum dolor sit amet consectetur adipiscing elit, montes
-                  condimentum odio senectus faucibus habitasse, arcu class orci
-                  aliquam a blandit.
-                </p>
-              </div>
-
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div className="rotate-[2deg] rounded-[2rem] border border-border bg-background p-5 shadow-sm">
-                  <p className="font-display text-xl tracking-[0.08em] text-olive">
-                    EMAIL
-                  </p>
-                  <p className="mt-3 max-w-[18rem] text-lg font-bold leading-tight text-foreground">
-                    hola@jpaab.es
-                  </p>
-                </div>
-
-                <div className="translate-y-3 rotate-[-2deg] rounded-[2rem] border border-border bg-card p-5 shadow-sm">
-                  <p className="font-display text-xl tracking-[0.08em] text-olive">
-                    TELÉFONO
-                  </p>
-                  <p className="mt-3 max-w-[18rem] text-lg font-bold leading-tight text-foreground">
-                    +34 600 000 000
-                  </p>
-                </div>
-              </div>
-            </div>
           </section>
         </FadeIn>
 
@@ -105,9 +63,8 @@ export default function ContactoPage() {
               </p>
 
               <p className="mt-3 max-w-2xl text-sm leading-6 text-muted">
-                Lorem ipsum dolor sit amet consectetur adipiscing elit, montes
-                condimentum odio senectus faucibus habitasse, arcu class orci
-                aliquam a blandit.
+                Esta versión del formulario es visual, pero ya deja clara la
+                energía con la que queremos que empiece la conversación.
               </p>
 
               <form className="mt-8 space-y-5">
@@ -216,9 +173,8 @@ export default function ContactoPage() {
                   CONSEJO
                 </p>
                 <p className="mt-3 text-sm leading-7 text-white/80">
-                  Lorem ipsum dolor sit amet consectetur adipiscing elit, montes
-                  condimentum odio senectus faucibus habitasse, arcu class orci
-                  aliquam a blandit.
+                  Si quieres algo bueno de verdad, no lo dejes para el último
+                  momento.
                 </p>
               </div>
             </StaggerItem>

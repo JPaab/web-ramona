@@ -8,7 +8,7 @@ type ProductCardProps = {
 export default function ProductCard({ product }: ProductCardProps) {
   return (
     <article className="group overflow-hidden rounded-[2rem] border border-border bg-card shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md">
-      <div className="relative aspect-[4/4.2] overflow-hidden bg-background">
+      <div className="relative h-[240px] overflow-hidden border-b border-border bg-background">
         <div className="absolute left-4 top-4 z-10 rotate-[-4deg] rounded-full border border-border bg-background px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-foreground shadow-sm">
           JPAAB
         </div>
@@ -16,7 +16,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         <img
           src={product.image}
           alt={product.name}
-          className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]"
+          className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02]"
         />
       </div>
 

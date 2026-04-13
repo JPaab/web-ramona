@@ -97,11 +97,8 @@ export default function ProductosPage() {
           </FadeIn>
 
           <StaggerGroup className="grid gap-8 sm:grid-cols-2 xl:grid-cols-4">
-            {products.map((product, index) => (
-              <StaggerItem
-                key={product.id}
-                className={index % 2 === 1 ? "xl:translate-y-6" : ""}
-              >
+            {products.map((product) => (
+              <StaggerItem key={product.id}>
                 <ProductCard product={product} />
               </StaggerItem>
             ))}
