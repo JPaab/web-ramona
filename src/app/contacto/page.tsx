@@ -20,7 +20,7 @@ export default function ContactoPage() {
               <h1 className="mt-5 font-display text-6xl leading-[0.92] tracking-[0.01em] text-foreground sm:text-7xl lg:text-[8rem]">
                 VENGA, CUÉNTANOS
                 <br />
-                TU VIDA.
+                TU VIDA
               </h1>
 
               <p className="mt-6 max-w-xl text-lg leading-8 text-muted">
@@ -35,9 +35,8 @@ export default function ContactoPage() {
                     EVENTOS
                   </p>
                   <p className="mt-3 text-sm leading-6 text-muted">
-                    Lorem ipsum dolor sit amet consectetur adipiscing elit,
-                    montes condimentum odio senectus faucibus habitasse, arcu
-                    class orci aliquam a blandit.
+                    Cumpleaños, celebraciones, mesas dulces y encargos con algo
+                    más de carácter.
                   </p>
                 </div>
 
@@ -46,9 +45,7 @@ export default function ContactoPage() {
                     A MEDIDA
                   </p>
                   <p className="mt-3 text-sm leading-6 text-muted">
-                    Lorem ipsum dolor sit amet consectetur adipiscing elit,
-                    montes condimentum odio senectus faucibus habitasse, arcu
-                    class orci aliquam a blandit.
+                    Adaptamos ideas y detalles sin volver el resultado genérico.
                   </p>
                 </div>
               </div>
@@ -57,7 +54,7 @@ export default function ContactoPage() {
             <div className="grid gap-6">
               <div className="rounded-[2.5rem] bg-foreground p-8 text-white shadow-sm md:p-10">
                 <p className="font-display text-xl tracking-[0.08em] text-olive">
-                  JPaab
+                  JPAAB
                 </p>
 
                 <h2 className="mt-4 font-display text-4xl leading-[0.95] tracking-[0.01em] sm:text-5xl">
@@ -77,21 +74,21 @@ export default function ContactoPage() {
                 </p>
               </div>
 
-              <div className="grid gap-6 sm:grid-cols-2">
-                <div className="rotate-2 rounded-4xl border border-border bg-background p-6 shadow-sm">
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div className="rotate-[2deg] rounded-[2rem] border border-border bg-background p-5 shadow-sm">
                   <p className="font-display text-xl tracking-[0.08em] text-olive">
                     EMAIL
                   </p>
-                  <p className="mt-3 text-xl font-bold leading-tight text-foreground">
-                    hola@empresa.com
+                  <p className="mt-3 max-w-[18rem] text-lg font-bold leading-tight text-foreground">
+                    hola@jpaab.es
                   </p>
                 </div>
 
-                <div className="translate-y-4 -rotate-2 rounded-4xl border border-border bg-card p-6 shadow-sm">
+                <div className="translate-y-3 rotate-[-2deg] rounded-[2rem] border border-border bg-card p-5 shadow-sm">
                   <p className="font-display text-xl tracking-[0.08em] text-olive">
                     TELÉFONO
                   </p>
-                  <p className="mt-3 text-xl font-bold leading-tight text-foreground">
+                  <p className="mt-3 max-w-[18rem] text-lg font-bold leading-tight text-foreground">
                     +34 600 000 000
                   </p>
                 </div>
@@ -179,7 +176,7 @@ export default function ContactoPage() {
 
                 <button
                   type="button"
-                  className="-rotate-1 rounded-full bg-foreground px-6 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-white shadow-sm transition duration-300 hover:-translate-y-0.5 hover:rotate-0 hover:shadow-md"
+                  className="rotate-[-1deg] rounded-full bg-foreground px-6 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-white shadow-sm transition duration-300 hover:-translate-y-0.5 hover:rotate-0 hover:shadow-md"
                 >
                   Enviar consulta
                 </button>
@@ -189,7 +186,7 @@ export default function ContactoPage() {
 
           <StaggerGroup className="space-y-6">
             <StaggerItem>
-              <div className="rounded-4xl border border-border bg-background p-6 shadow-sm">
+              <div className="rounded-[2rem] border border-border bg-background p-6 shadow-sm">
                 <p className="font-display text-2xl tracking-[0.08em] text-olive">
                   HORARIO
                 </p>
@@ -200,27 +197,28 @@ export default function ContactoPage() {
             </StaggerItem>
 
             <StaggerItem>
-              <div className="rounded-4xl border border-border bg-card p-6 shadow-sm">
+              <div className="rounded-[2rem] border border-border bg-card p-6 shadow-sm">
                 <p className="font-display text-2xl tracking-[0.08em] text-olive">
                   QUÉ PUEDES PEDIR
                 </p>
                 <ul className="mt-4 space-y-3 text-sm leading-6 text-muted">
-                  <li>• 1</li>
-                  <li>• 2</li>
-                  <li>• 3</li>
-                  <li>• 4</li>
+                  <li>• Tartas para cumpleaños y celebraciones</li>
+                  <li>• Cupcakes y mesas dulces</li>
+                  <li>• Encargos personalizados</li>
+                  <li>• Diseños con más identidad que la media</li>
                 </ul>
               </div>
             </StaggerItem>
 
             <StaggerItem>
-              <div className="rotate-1 rounded-4xl border border-border bg-foreground p-6 text-white shadow-sm">
+              <div className="rotate-[1deg] rounded-[2rem] border border-border bg-foreground p-6 text-white shadow-sm">
                 <p className="font-display text-2xl tracking-[0.08em] text-olive">
                   CONSEJO
                 </p>
                 <p className="mt-3 text-sm leading-7 text-white/80">
-                  Si quieres algo bueno de verdad, no lo dejes para el último
-                  momento.
+                  Lorem ipsum dolor sit amet consectetur adipiscing elit, montes
+                  condimentum odio senectus faucibus habitasse, arcu class orci
+                  aliquam a blandit.
                 </p>
               </div>
             </StaggerItem>

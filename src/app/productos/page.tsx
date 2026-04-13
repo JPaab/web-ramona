@@ -56,16 +56,16 @@ export default function ProductosPage() {
               </div>
 
               <div className="grid gap-4 sm:grid-cols-2">
-                <div className="-rotate-2 rounded-[2rem] border border-border bg-background p-5 shadow-sm">
+                <div className="rotate-[-2deg] rounded-[2rem] border border-border bg-background p-5 shadow-sm">
                   <p className="font-display text-xl tracking-[0.08em] text-olive">
                     {products.length} PIEZAS
                   </p>
                   <p className="mt-3 max-w-[18rem] text-lg font-bold leading-tight text-foreground">
-                    Lorem ipsum dolor sit amet consectetur adipiscing elit.
+                    Una primera selección con bastante carácter.
                   </p>
                 </div>
 
-                <div className="translate-y-3 rotate-2 rounded-[2rem] border border-border bg-card p-5 shadow-sm">
+                <div className="translate-y-3 rotate-[2deg] rounded-[2rem] border border-border bg-card p-5 shadow-sm">
                   <p className="font-display text-xl tracking-[0.08em] text-olive">
                     PERSONALIZABLE
                   </p>
@@ -91,7 +91,7 @@ export default function ProductosPage() {
               </div>
 
               <p className="text-sm font-medium uppercase tracking-[0.08em] text-muted">
-                JPaab
+                JPAAB
               </p>
             </div>
           </FadeIn>
