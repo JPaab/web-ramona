@@ -13,8 +13,8 @@ export default function Home() {
               <div className="relative rounded-[2.5rem] border border-border bg-card p-8 shadow-sm md:p-10 lg:p-12">
                 <DraggableSticker
                   className="left-0 top-0"
-                  initialX={960}
-                  initialY={468}
+                  initialX={1029}
+                  initialY={391}
                   showPosition
                 />
                 <p className="font-display text-2xl tracking-[0.08em] text-olive">
@@ -22,11 +22,9 @@ export default function Home() {
                 </p>
 
                 <h1 className="mt-6 font-display text-7xl leading-[0.9] tracking-[0.01em] text-foreground sm:text-8xl lg:text-[9rem]">
-                  DULCES
+                  REPOSTERÍA
                   <br />
-                  CON
-                  <br />
-                  CARÁCTER
+                  ARTESANAL
                 </h1>
 
                 <p className="mt-6 max-w-xl text-lg leading-8 text-muted">
@@ -57,18 +55,16 @@ export default function Home() {
                       NADA DE LO TÍPICO
                     </p>
                     <p className="mt-3 text-sm leading-6 text-muted">
-                      Encargos con intención, estética y una personalidad que no
-                      se queda en lo correcto.
+                      Lorem ipsum dolor sit amet.
                     </p>
                   </div>
 
-                  <div className="translate-y-3 rounded-[1.75rem] border border-border bg-background p-5">
+                  <div className="rounded-[1.75rem] border border-border bg-background p-5">
                     <p className="font-display text-xl tracking-[0.08em] text-olive">
                       SABOR + PRESENCIA
                     </p>
                     <p className="mt-3 text-sm leading-6 text-muted">
-                      Si entra por los ojos, tiene que rematar en boca. Y aquí
-                      eso no se negocia.
+                      Lorem ipsum dolor sit amet.
                     </p>
                   </div>
                 </div>
@@ -87,15 +83,13 @@ export default function Home() {
                     <br />
                     HACEMOS ALGO
                     <br />
-                    QUE SE
-                    <br />
-                    RECUERDE.
+                    QUE FLIPAS
                   </h2>
 
                   <p className="mt-6 max-w-sm text-sm leading-7 text-white/75">
-                    La marca no va de quedar bien. Va de tener identidad propia,
-                    dejar huella y aparecer en la mesa con más intención que
-                    cualquiera.
+                    Lorem ipsum dolor sit amet consectetur adipiscing elit,
+                    montes condimentum odio senectus faucibus habitasse, arcu
+                    class orci aliquam a blandit.
                   </p>
                 </div>
 

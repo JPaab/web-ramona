@@ -42,7 +42,7 @@ export default function ContactoPage() {
                   </p>
                 </div>
 
-                <div className="translate-y-3 rounded-[1.75rem] border border-border bg-background p-5">
+                <div className="rounded-[1.75rem] border border-border bg-background p-5">
                   <p className="font-display text-xl tracking-[0.08em] text-olive">
                     A MEDIDA
                   </p>

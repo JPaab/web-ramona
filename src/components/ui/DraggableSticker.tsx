@@ -24,8 +24,8 @@ export default function DraggableSticker({
     <>
       <motion.div
         drag
-        dragElastic={0.18}
-        dragMomentum
+        dragElastic={0}
+        dragMomentum={false}
         onHoverStart={() => setIsActive(true)}
         onHoverEnd={() => setIsActive(false)}
         onDragStart={() => setIsActive(true)}
@@ -53,10 +53,10 @@ export default function DraggableSticker({
           <Image
             src={
               isActive
-                ? "/images/stickers/no-es-la-tipica-active.png"
-                : "/images/stickers/no-es-la-tipica-normal.png"
+                ? "/images/logo/sticker_hover.svg"
+                : "/images/logo/sticker.svg"
             }
-            alt="No es la típica"
+            alt="Asterisco"
             width={230}
             height={90}
             priority
