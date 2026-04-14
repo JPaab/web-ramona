@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 import useEmblaCarousel from "embla-carousel-react";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect } from "react";
 import { products } from "@/data/products";
 
-const SIDE_PEEK = 18;
-const AUTOPLAY_DELAY = 5000;
+const SIDE_PEEK = 10;
+const AUTOPLAY_DELAY = 3000;
 
 export default function FeaturedProductsCarousel() {
   const [emblaRef, emblaApi] = useEmblaCarousel({
@@ -16,30 +16,6 @@ export default function FeaturedProductsCarousel() {
     skipSnaps: false,
     containScroll: false,
   });
-
-  const [selectedIndex, setSelectedIndex] = useState(0);
-
-  const updateCarouselState = useCallback(() => {
-    if (!emblaApi) return;
-    setSelectedIndex(emblaApi.selectedScrollSnap());
-  }, [emblaApi]);
-
-  useEffect(() => {
-    if (!emblaApi) return;
-
-    const frame = requestAnimationFrame(() => {
-      updateCarouselState();
-    });
-
-    emblaApi.on("select", updateCarouselState);
-    emblaApi.on("reInit", updateCarouselState);
-
-    return () => {
-      cancelAnimationFrame(frame);
-      emblaApi.off("select", updateCarouselState);
-      emblaApi.off("reInit", updateCarouselState);
-    };
-  }, [emblaApi, updateCarouselState]);
 
   useEffect(() => {
     if (!emblaApi) return;
@@ -119,22 +95,6 @@ export default function FeaturedProductsCarousel() {
               ))}
             </div>
           </div>
-        </div>
-
-        <div className="mt-5 flex items-center justify-center gap-2">
-          {products.map((product, index) => (
-            <button
-              key={product.id}
-              type="button"
-              onClick={() => emblaApi?.scrollTo(index)}
-              aria-label={`Ir al producto ${index + 1}`}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                selectedIndex === index
-                  ? "w-7 bg-foreground"
-                  : "w-2 bg-border hover:bg-muted"
-              }`}
-            />
-          ))}
         </div>
       </div>
     </section>

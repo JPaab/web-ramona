@@ -13,9 +13,10 @@ export default function Home() {
               <div className="relative rounded-[2.5rem] border border-border bg-card p-8 shadow-sm md:p-10 lg:p-12">
                 <DraggableSticker
                   className="left-0 top-0"
-                  initialX={936}
-                  initialY={446}
+                  initialX={-70}
+                  initialY={8}
                 />
+
                 <p className="font-display text-2xl tracking-[0.08em] text-olive">
                   JPAAB
                 </p>
@@ -175,6 +176,7 @@ export default function Home() {
           </FadeIn>
         </div>
       </section>
+
       <FeaturedProductsCarousel />
     </main>
   );
