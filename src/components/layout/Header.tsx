@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 const productTypes = [
   { name: "Tartas", href: "/productos" },
@@ -15,6 +15,21 @@ const productTypes = [
 
 export default function Header() {
   const [isProductsOpen, setIsProductsOpen] = useState(false);
+  const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const openProductsMenu = () => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
+    setIsProductsOpen(true);
+  };
+
+  const closeProductsMenu = () => {
+    closeTimeoutRef.current = setTimeout(() => {
+      setIsProductsOpen(false);
+    }, 220);
+  };
 
   return (
     <motion.header
@@ -39,13 +54,11 @@ export default function Header() {
             Inicio
           </Link>
 
-          <div
-            className="relative"
-            onMouseEnter={() => setIsProductsOpen(true)}
-            onMouseLeave={() => setIsProductsOpen(false)}
-          >
+          <div className="relative">
             <Link
               href="/productos"
+              onMouseEnter={openProductsMenu}
+              onMouseLeave={closeProductsMenu}
               className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.12em] text-muted transition duration-200 hover:text-foreground"
             >
               Productos
@@ -65,15 +78,22 @@ export default function Header() {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 8, scale: 0.98 }}
                   transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
-                  className="absolute left-1/2 top-full z-40 -translate-x-1/2 pt-5"
+                  onMouseEnter={openProductsMenu}
+                  onMouseLeave={closeProductsMenu}
+                  className="absolute left-1/2 top-full z-40 -translate-x-1/2 mt-8"
                 >
-                  <div className="w-[520px] rounded-[2rem] border border-border bg-card p-3 shadow-[0_20px_60px_rgba(0,0,0,0.10)]">
+                  <div
+                    className="w-[520px] rounded-[2rem] border border-border p-3 shadow-sm"
+                    style={{
+                      backgroundColor: "rgba(243, 239, 230, 0.92)",
+                    }}
+                  >
                     <div className="grid grid-cols-2 gap-x-3">
                       {productTypes.map((item, index) => (
                         <Link
                           key={item.name}
                           href={item.href}
-                          className={`group px-4 py-4 transition duration-300 hover:bg-background ${
+                          className={`group px-4 py-4 transition duration-300 hover:bg-black/5 ${
                             index < productTypes.length - 1
                               ? "border-b border-border"
                               : ""
