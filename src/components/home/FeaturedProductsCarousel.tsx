@@ -5,7 +5,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import { useEffect } from "react";
 import { products } from "@/data/products";
 
-const SIDE_PEEK = 10;
+const SIDE_PEEK = 12;
 const AUTOPLAY_DELAY = 3000;
 
 export default function FeaturedProductsCarousel() {
@@ -31,7 +31,7 @@ export default function FeaturedProductsCarousel() {
 
   return (
     <section className="bg-background px-6 py-8 md:py-10">
-      <div className="mx-auto max-w-2xl">
+      <div className="mx-auto max-w-3xl">
         <div className="mb-8">
           <p className="font-display text-lg tracking-[0.08em] text-olive">
             PRODUCTOS DESTACADOS
@@ -41,7 +41,7 @@ export default function FeaturedProductsCarousel() {
           </h2>
         </div>
 
-        <div className="mx-auto max-w-[448px]">
+        <div className="mx-auto max-w-[600px]">
           <div ref={emblaRef} className="overflow-hidden px-1 py-3">
             <div className="flex">
               {products.map((product) => (
@@ -56,7 +56,7 @@ export default function FeaturedProductsCarousel() {
                   }}
                 >
                   <article className="group overflow-hidden rounded-[2rem] border border-border bg-card shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-md">
-                    <div className="relative h-[240px] overflow-hidden border-b border-border bg-background">
+                    <div className="relative h-[320px] overflow-hidden border-b border-border bg-background">
                       <img
                         src={product.image}
                         alt={product.name}

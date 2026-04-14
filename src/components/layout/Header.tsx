@@ -59,7 +59,7 @@ export default function Header() {
               href="/productos"
               onMouseEnter={openProductsMenu}
               onMouseLeave={closeProductsMenu}
-              className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.12em] text-muted transition duration-200 hover:text-foreground"
+              className="inline-flex items-center text-sm font-semibold uppercase tracking-[0.12em] text-muted transition duration-200 hover:text-foreground"
             >
               Productos
               <motion.span
@@ -121,10 +121,10 @@ export default function Header() {
         </nav>
 
         <Link
-          href="/contacto"
-          className="rotate-[-2deg] rounded-full border border-border bg-background px-6 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-foreground shadow-sm transition duration-300 hover:-translate-y-0.5 hover:rotate-0 hover:border-foreground hover:bg-foreground hover:text-white hover:shadow-md"
+          href="/museo"
+          className="rotate-[-2deg] rounded-full border border-border bg-background px-6 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-foreground shadow-sm transition duration-300 hover:-translate-y-0.5 hover:rotate-0 hover:border-olive hover:bg-background hover:text-white hover:shadow-md"
         >
-          Encargar
+          EL MUSEO
         </Link>
       </div>
     </motion.header>

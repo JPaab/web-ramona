@@ -67,7 +67,7 @@ export default function DraggableSticker({
       </motion.div>
 
       {showPosition ? (
-        <div className="absolute bottom-3 left-3 z-30 rounded-md bg-black/75 px-2 py-1 text-xs text-white">
+        <div className="absolute left-3 top-3 z-50 rounded-md bg-black/80 px-3 py-2 text-xs text-white">
           x: {Math.round(position.x)} | y: {Math.round(position.y)}
         </div>
       ) : null}
