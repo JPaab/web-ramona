@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 const productTypes = [
   { name: "Tartas", href: "/productos" },
@@ -15,6 +16,21 @@ const productTypes = [
 
 export default function Header() {
   const [isProductsOpen, setIsProductsOpen] = useState(false);
+  const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const openProductsMenu = () => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
+    setIsProductsOpen(true);
+  };
+
+  const closeProductsMenu = () => {
+    closeTimeoutRef.current = setTimeout(() => {
+      setIsProductsOpen(false);
+    }, 220);
+  };
   const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const openProductsMenu = () => {
@@ -55,8 +71,11 @@ export default function Header() {
           </Link>
 
           <div className="relative">
+          <div className="relative">
             <Link
               href="/productos"
+              onMouseEnter={openProductsMenu}
+              onMouseLeave={closeProductsMenu}
               onMouseEnter={openProductsMenu}
               onMouseLeave={closeProductsMenu}
               className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.12em] text-muted transition duration-200 hover:text-foreground"
@@ -78,6 +97,9 @@ export default function Header() {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 8, scale: 0.98 }}
                   transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
+                  onMouseEnter={openProductsMenu}
+                  onMouseLeave={closeProductsMenu}
+                  className="absolute left-1/2 top-full z-40 -translate-x-1/2 mt-8"
                   onMouseEnter={openProductsMenu}
                   onMouseLeave={closeProductsMenu}
                   className="absolute left-1/2 top-full z-40 -translate-x-1/2 mt-8"
