@@ -2,8 +2,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { products } from "@/data/products";
 import FadeIn from "@/components/motion/FadeIn";
-import StaggerGroup from "@/components/motion/StaggerGroup";
-import StaggerItem from "@/components/motion/StaggerItem";
 
 type ProductDetailPageProps = {
   params: Promise<{
@@ -23,154 +21,180 @@ export default async function ProductDetailPage({
   }
 
   return (
-    <main className="bg-background px-6 py-14 md:py-18">
+    <main className="bg-background px-6 pb-16 pt-12 md:pb-20 md:pt-16">
       <div className="mx-auto max-w-6xl">
-        <FadeIn>
+        <FadeIn amount={0.08}>
           <div className="mb-8">
             <Link
               href="/productos"
-              className="text-sm font-semibold uppercase tracking-[0.08em] text-olive transition duration-200 hover:text-olive-dark"
+              className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-olive transition duration-200 hover:text-olive-dark"
             >
-              ← Volver a productos
+              <span>←</span>
+              <span>Volver a piezas</span>
             </Link>
           </div>
         </FadeIn>
 
-        <FadeIn>
-          <section className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
-            <div className="relative self-start overflow-hidden rounded-[2.5rem] border border-border bg-background shadow-sm">
-              <div className="absolute left-4 top-4 z-10 -rotate-[4deg] rounded-full border border-border bg-background px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-foreground shadow-sm">
+        <FadeIn amount={0.08} delay={0.02}>
+          <section className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
+            <div className="relative">
+              <div className="absolute left-4 top-4 z-10 rotate-[-4deg] rounded-full border border-border bg-background/90 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-foreground backdrop-blur-sm">
                 JPAAB
               </div>
 
-              <div className="aspect-[4/3.9] overflow-hidden">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="h-full w-full object-cover transition duration-500 hover:scale-[1.03]"
-                />
+              <div className="overflow-hidden rounded-[2.6rem] bg-card">
+                <div className="aspect-[4/4.7] overflow-hidden bg-background">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="h-full w-full object-cover transition duration-700 hover:scale-[1.03]"
+                  />
+                </div>
               </div>
             </div>
 
-            <div className="grid gap-6">
-              <div className="relative rounded-[2.5rem] border border-border bg-card p-8 shadow-sm md:p-10">
-                <div className="absolute right-4 top-5 rotate-[4deg] rounded-full border border-border bg-foreground px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-white shadow-sm">
-                  HECHO CON CARÁCTER
+            <div className="lg:pt-2">
+              <p className="font-display text-2xl tracking-[0.08em] text-olive">
+                PIEZA
+              </p>
+
+              <h1 className="mt-4 font-display text-6xl leading-[0.86] tracking-[0.01em] text-foreground sm:text-7xl">
+                {product.name}
+              </h1>
+
+              <p className="mt-6 max-w-xl text-lg leading-8 text-muted">
+                {product.description}
+              </p>
+
+              <div className="mt-10 grid gap-8 border-t border-border pt-8 sm:grid-cols-[1fr_auto] sm:items-end">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.12em] text-muted">
+                    Precio
+                  </p>
+                  <p className="mt-2 font-display text-6xl leading-none tracking-[0.03em] text-foreground">
+                    {product.price}€
+                  </p>
                 </div>
 
-                <p className="font-display text-2xl tracking-[0.08em] text-olive">
-                  PRODUCTO
-                </p>
-
-                <h1 className="mt-5 font-display text-5xl leading-[0.92] tracking-[0.01em] text-foreground sm:text-6xl">
-                  {product.name}
-                </h1>
-
-                <p className="mt-6 max-w-xl text-lg leading-8 text-muted">
-                  {product.description}
-                </p>
-
-                <div className="mt-8 flex items-end justify-between gap-6 border-t border-border pt-6">
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.12em] text-muted">
-                      Precio
-                    </p>
-                    <p className="mt-2 font-display text-5xl leading-none tracking-[0.03em] text-foreground">
-                      {product.price}€
-                    </p>
-                  </div>
-
-                  <div className="text-right">
-                    <p className="text-xs font-semibold uppercase tracking-[0.12em] text-muted">
-                      Disponible
-                    </p>
-                    <p className="mt-2 text-sm font-semibold uppercase tracking-[0.08em] text-olive">
-                      Bajo encargo
-                    </p>
-                  </div>
-                </div>
-
-                <div className="mt-8 flex flex-wrap gap-4">
-                  <button className="-rotate-[1deg] rounded-full bg-foreground px-6 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-white shadow-sm transition duration-300 hover:-translate-y-0.5 hover:rotate-0 hover:shadow-md">
-                    Añadir al carrito
-                  </button>
-
-                  <Link
-                    href="/contacto"
-                    className="rounded-full border border-border bg-background px-6 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-foreground shadow-sm transition duration-300 hover:-translate-y-0.5 hover:border-olive hover:text-olive hover:shadow-md"
-                  >
-                    Quiero este encargo
-                  </Link>
+                <div className="sm:text-right">
+                  <p className="text-xs font-semibold uppercase tracking-[0.12em] text-muted">
+                    Estado
+                  </p>
+                  <p className="mt-2 text-sm font-semibold uppercase tracking-[0.08em] text-olive">
+                    Bajo encargo
+                  </p>
                 </div>
               </div>
 
-              <StaggerGroup className="grid gap-4 sm:grid-cols-2">
-                <StaggerItem>
-                  <div className="rounded-[2rem] border border-border bg-background p-5 shadow-sm">
-                    <p className="font-display text-xl tracking-[0.08em] text-olive">
+              <div className="mt-8 flex flex-wrap gap-4">
+                <Link
+                  href="/contacto"
+                  className="inline-flex rounded-full border border-olive bg-background px-6 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-background transition duration-300 hover:-translate-y-0.5 hover:border-olive hover:bg-olive"
+                >
+                  Pedir esta pieza
+                </Link>
+              </div>
+
+              <div className="mt-12 border-t border-border pt-8">
+                <div className="grid gap-8 md:grid-cols-2">
+                  <div>
+                    <p className="font-display text-2xl tracking-[0.06em] text-foreground">
                       ELABORACIÓN
                     </p>
-                    <p className="mt-3 text-sm leading-6 text-muted">
-                      Lorem ipsum dolor sit amet consectetur adipiscing elit,
-                      montes condimentum odio senectus faucibus habitasse, arcu
-                      class orci aliquam a blandit.
+                    <p className="mt-3 max-w-sm text-sm leading-7 text-muted">
+                      Lorem ipsum dolor sit amet consectetur adipiscing elit
+                      faucibus orci penatibus.
                     </p>
                   </div>
-                </StaggerItem>
 
-                <StaggerItem className="sm:translate-y-3">
-                  <div className="rounded-[2rem] border border-border bg-card p-5 shadow-sm">
-                    <p className="font-display text-xl tracking-[0.08em] text-olive">
+                  <div>
+                    <p className="font-display text-2xl tracking-[0.06em] text-foreground">
                       PERSONALIZACIÓN
                     </p>
-                    <p className="mt-3 text-sm leading-6 text-muted">
-                      Lorem ipsum dolor sit amet consectetur adipiscing elit,
-                      montes condimentum odio senectus faucibus habitasse, arcu
-                      class orci aliquam a blandit.
+                    <p className="mt-3 max-w-sm text-sm leading-7 text-muted">
+                      Lorem ipsum dolor sit amet consectetur adipiscing elit
+                      faucibus orci penatibus.
                     </p>
                   </div>
-                </StaggerItem>
-              </StaggerGroup>
+                </div>
+              </div>
             </div>
           </section>
         </FadeIn>
 
-        <section className="mt-10">
-          <StaggerGroup className="grid gap-6 md:grid-cols-3">
-            <StaggerItem>
-              <div className="min-h-[180px] rounded-[2rem] border border-border bg-card p-6 shadow-sm">
+        <section className="mt-16 border-t border-border pt-10">
+          <FadeIn amount={0.1}>
+            <div className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr]">
+              <div>
                 <p className="font-display text-xl tracking-[0.08em] text-olive">
-                  PRESENCIA
-                </p>
-                <p className="mt-3 text-lg font-bold leading-tight text-foreground">
-                  Cada producto tiene que entrar fuerte antes del primer bocado.
+                  MANIFIESTO DE PIEZA
                 </p>
               </div>
-            </StaggerItem>
 
-            <StaggerItem className="md:translate-y-2">
-              <div className="min-h-[180px] rounded-[2rem] border border-border bg-card p-6 shadow-sm">
-                <p className="font-display text-xl tracking-[0.08em] text-olive">
-                  SABOR
-                </p>
-                <p className="mt-3 text-lg font-bold leading-tight text-foreground">
-                  Lo visual importa, pero nunca por encima de lo que pasa al
-                  probarlo.
-                </p>
-              </div>
-            </StaggerItem>
+              <div>
+                <h2 className="max-w-4xl text-3xl font-bold leading-tight text-foreground md:text-5xl md:leading-[1.02]">
+                  Lorem ipsum dolor sit amet consectetur adipiscing elit
+                  faucibus orci penatibus, odio conubia litora bibendum metus
+                  praesent montes.
+                </h2>
 
-            <StaggerItem>
-              <div className="min-h-[180px] rounded-[2rem] border border-border bg-foreground p-6 text-white shadow-sm">
-                <p className="font-display text-xl tracking-[0.08em] text-olive">
-                  LA RAMONA
-                </p>
-                <p className="mt-3 text-lg font-bold leading-tight text-white">
-                  No va de quedar bien. Va de que se acuerden.
-                </p>
+                <div className="mt-8 grid gap-6 md:grid-cols-3">
+                  <div>
+                    <p className="font-display text-2xl tracking-[0.05em] text-foreground">
+                      PRESENCIA
+                    </p>
+                    <p className="mt-3 text-sm leading-7 text-muted">1</p>
+                  </div>
+
+                  <div>
+                    <p className="font-display text-2xl tracking-[0.05em] text-foreground">
+                      SABOR
+                    </p>
+                    <p className="mt-3 text-sm leading-7 text-muted">2</p>
+                  </div>
+
+                  <div>
+                    <p className="font-display text-2xl tracking-[0.05em] text-foreground">
+                      REMATE
+                    </p>
+                    <p className="mt-3 text-sm leading-7 text-muted">3</p>
+                  </div>
+                </div>
               </div>
-            </StaggerItem>
-          </StaggerGroup>
+            </div>
+          </FadeIn>
+        </section>
+
+        <section className="mt-16">
+          <FadeIn amount={0.1} delay={0.02}>
+            <div className="grid gap-10 border-t border-border pt-10 lg:grid-cols-[1fr_1fr] lg:items-end">
+              <div>
+                <p className="font-display text-xl tracking-[0.08em] text-olive">
+                  PIEZA A MEDIDA
+                </p>
+
+                <h2 className="mt-4 font-display text-5xl leading-[0.86] tracking-[0.01em] text-foreground sm:text-6xl">
+                  PIEZAS
+                  <br />A MEDIDA
+                </h2>
+              </div>
+
+              <div className="lg:pl-10">
+                <p className="max-w-md text-base leading-8 text-muted">
+                  Lorem ipsum dolor sit amet consectetur adipiscing elit
+                  faucibus orci penatibus, odio conubia litora bibendum metus
+                  praesent.
+                </p>
+
+                <Link
+                  href="/contacto"
+                  className="mt-8 inline-flex rounded-full border border-olive bg-background px-6 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-background transition duration-300 hover:-translate-y-0.5 hover:border-olive hover:bg-olive"
+                >
+                  Quiero este encargo
+                </Link>
+              </div>
+            </div>
+          </FadeIn>
         </section>
       </div>
     </main>
