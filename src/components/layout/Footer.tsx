@@ -39,6 +39,12 @@ export default function Footer() {
               >
                 Contacto
               </Link>
+              <Link
+                href="/museo"
+                className="transition duration-200 hover:text-foreground"
+              >
+                El museo
+              </Link>
             </nav>
           </div>
 

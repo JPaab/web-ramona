@@ -6,165 +6,161 @@ import DraggableSticker from "@/components/ui/DraggableSticker";
 export default function Home() {
   return (
     <main>
-      <section className="bg-background px-6 py-12 md:py-16">
+      <section className="relative overflow-hidden bg-background px-6 pb-14 pt-10 md:pb-20 md:pt-14">
         <div className="mx-auto max-w-6xl">
-          <FadeIn>
-            <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-              <div className="relative rounded-[2.5rem] border border-border bg-card p-8 shadow-sm md:p-10 lg:p-12">
-                <DraggableSticker
-                  className="left-0 top-0"
-                  initialX={1029}
-                  initialY={391}
-                  showPosition
-                />
-                <p className="font-display text-2xl tracking-[0.08em] text-olive">
-                  JPAAB
-                </p>
+          <div className="relative">
+            <DraggableSticker
+              className="left-0 top-0"
+              initialX={-264}
+              initialY={206}
+              showPosition
+            />
 
-                <h1 className="mt-6 font-display text-7xl leading-[0.9] tracking-[0.01em] text-foreground sm:text-8xl lg:text-[9rem]">
-                  REPOSTERÍA
-                  <br />
-                  ARTESANAL
-                </h1>
-
-                <p className="mt-6 max-w-xl text-lg leading-8 text-muted">
-                  Lorem ipsum dolor sit amet consectetur adipiscing elit, montes
-                  condimentum odio senectus faucibus habitasse, arcu class orci
-                  aliquam a blandit.
-                </p>
-
-                <div className="mt-10 flex flex-wrap gap-4">
-                  <Link
-                    href="/productos"
-                    className="rounded-full border border-border bg-background px-6 py-3 text-sm font-semibold text-foreground shadow-sm transition duration-300 hover:-translate-y-0.5 hover:border-olive hover:text-olive hover:shadow-md"
-                  >
-                    Ver la selección
-                  </Link>
-
-                  <Link
-                    href="/contacto"
-                    className="rounded-full border border-border bg-background px-6 py-3 text-sm font-semibold text-foreground shadow-sm transition duration-300 hover:-translate-y-0.5 hover:border-olive hover:text-olive hover:shadow-md"
-                  >
-                    Quiero un encargo
-                  </Link>
-                </div>
-
-                <div className="mt-12 grid gap-4 sm:grid-cols-2">
-                  <div className="rounded-[1.75rem] border border-border bg-background p-5">
-                    <p className="font-display text-xl tracking-[0.08em] text-olive">
-                      NADA DE LO TÍPICO
-                    </p>
-                    <p className="mt-3 text-sm leading-6 text-muted">
-                      Lorem ipsum dolor sit amet.
-                    </p>
-                  </div>
-
-                  <div className="rounded-[1.75rem] border border-border bg-background p-5">
-                    <p className="font-display text-xl tracking-[0.08em] text-olive">
-                      SABOR + PRESENCIA
-                    </p>
-                    <p className="mt-3 text-sm leading-6 text-muted">
-                      Lorem ipsum dolor sit amet.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="grid gap-6">
-                <div className="rounded-[2.5rem] bg-foreground p-8 text-white shadow-sm md:p-10">
-                  <p className="font-display text-xl tracking-[0.08em] text-olive">
-                    MANIFIESTO
-                  </p>
-
-                  <h2 className="mt-4 font-display text-5xl leading-[0.92] tracking-[0.01em] sm:text-6xl">
-                    NO HACEMOS
-                    <br />
-                    ALGO MONO.
-                    <br />
-                    HACEMOS ALGO
-                    <br />
-                    QUE FLIPAS
-                  </h2>
-
-                  <p className="mt-6 max-w-sm text-sm leading-7 text-white/75">
-                    Lorem ipsum dolor sit amet consectetur adipiscing elit,
-                    montes condimentum odio senectus faucibus habitasse, arcu
-                    class orci aliquam a blandit.
-                  </p>
-                </div>
-
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <div className="rotate-[-2deg] rounded-[2rem] border border-border bg-background p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md">
-                    <p className="font-display text-xl tracking-[0.08em] text-olive">
-                      PERSONALIZABLE
-                    </p>
-                    <p className="mt-3 max-w-[18rem] text-lg font-bold leading-tight text-foreground">
-                      Hecho a tu manera, sin perder carácter.
-                    </p>
-                  </div>
-
-                  <div className="translate-y-3 rotate-[2deg] rounded-[2rem] border border-border bg-card p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md">
-                    <p className="font-display text-xl tracking-[0.08em] text-olive">
-                      CON PRESENCIA
-                    </p>
-                    <p className="mt-3 max-w-[18rem] text-lg font-bold leading-tight text-foreground">
-                      Bonito, sí. Pero con intención.
-                    </p>
-                  </div>
-                </div>
-              </div>
+            <div className="pointer-events-none absolute right-0 top-0 hidden font-display text-[11rem] leading-none tracking-[0.01em] text-foreground/[0.04] lg:block">
+              LA
+              <br />
+              RAMONA
             </div>
-          </FadeIn>
-        </div>
-      </section>
 
-      <section className="bg-background px-6 py-10 md:py-14">
-        <div className="mx-auto max-w-6xl">
-          <FadeIn>
-            <div className="rounded-[2.5rem] border border-border bg-card p-8 shadow-sm md:p-10">
-              <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-                <div>
-                  <p className="font-display text-xl tracking-[0.08em] text-olive">
-                    LO QUE HAY AQUÍ
-                  </p>
-                  <h2 className="mt-3 text-3xl font-bold leading-tight text-foreground md:text-4xl">
-                    No hacemos dulces
+            <FadeIn amount={0.08}>
+              <div className="grid gap-12 lg:grid-cols-[1.18fr_0.82fr] lg:items-start">
+                <div className="relative z-10">
+                  <h1 className="mt-6 max-w-5xl font-display text-[4.8rem] leading-[0.8] tracking-[0.01em] text-foreground sm:text-[6.2rem] lg:text-[8.8rem]">
+                    ERA
                     <br />
-                    para pasar desapercibidos.
-                  </h2>
+                    LO QUE
+                    <br />
+                    NECESITABAS.
+                  </h1>
+
+                  <p className="mt-8 max-w-xl text-lg leading-8 text-muted">
+                    Lorem ipsum dolor sit amet consectetur adipiscing elit
+                    faucibus orci penatibus, odio conubia litora bibendum metus
+                    praesent montes.
+                  </p>
+
+                  <div className="mt-10 flex flex-wrap gap-4">
+                    <Link
+                      href="/productos"
+                      className="inline-flex rounded-full border border-border bg-transparent px-6 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-foreground transition duration-300 hover:-translate-y-0.5 hover:border-olive hover:text-olive"
+                    >
+                      Ver catalogo
+                    </Link>
+
+                    <Link
+                      href="/contacto"
+                      className="inline-flex rounded-full border border-border bg-transparent px-6 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-foreground transition duration-300 hover:-translate-y-0.5 hover:border-olive hover:text-olive"
+                    >
+                      Encargo a medida
+                    </Link>
+                  </div>
                 </div>
 
-                <div className="space-y-6">
-                  <div className="border-b border-border pb-5">
-                    <p className="font-display text-2xl tracking-[0.06em] text-olive">
-                      NADA PLANO
-                    </p>
-                    <p className="mt-3 max-w-2xl text-base leading-8 text-muted">
-                      Nos importa el acabado, la composición y la presencia
-                      visual porque el conjunto también forma parte del sabor.
+                <div className="relative pt-4 lg:pt-16">
+                  <div className="border-t border-border pt-5">
+                    <p className="font-display text-lg tracking-[0.08em] text-olive">
+                      NO HACEMOS LO TÍPICO
                     </p>
                   </div>
 
-                  <div className="border-b border-border pb-5">
-                    <p className="font-display text-2xl tracking-[0.06em] text-olive">
-                      HECHO A MEDIDA
-                    </p>
-                    <p className="mt-3 max-w-2xl text-base leading-8 text-muted">
-                      Personalizamos encargos para celebraciones, eventos y
-                      pedidos con intención, sin perder identidad por el camino.
+                  <div className="mt-8 space-y-10">
+                    <div>
+                      <p className="font-display text-3xl leading-none tracking-[0.05em] text-foreground">
+                        PRESENCIA
+                      </p>
+                      <p className="mt-3 max-w-sm text-sm leading-7 text-muted">
+                        Lorem ipsum dolor sit amet consectetur adipiscing elit
+                        faucibus orci penatibus, odio conubia litora bibendum
+                        metus.
+                      </p>
+                    </div>
+
+                    <div>
+                      <p className="font-display text-3xl leading-none tracking-[0.05em] text-foreground">
+                        COMPOSICIÓN
+                      </p>
+                      <p className="mt-3 max-w-sm text-sm leading-7 text-muted">
+                        Lorem ipsum dolor sit amet consectetur adipiscing elit
+                        faucibus orci penatibus, odio conubia litora bibendum
+                        metus praesent.
+                      </p>
+                    </div>
+
+                    <div>
+                      <p className="font-display text-3xl leading-none tracking-[0.05em] text-foreground">
+                        CARÁCTER
+                      </p>
+                      <p className="mt-3 max-w-sm text-sm leading-7 text-muted">
+                        Lorem ipsum dolor sit amet consectetur adipiscing elit
+                        faucibus orci penatibus, odio conubia litora bibendum
+                        metus.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </FadeIn>
+
+            <FadeIn amount={0.1} delay={0.02}>
+              <div className="mt-16 border-t border-border pt-8">
+                <div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
+                  <div>
+                    <p className="font-display text-xl tracking-[0.08em] text-olive">
+                      MANIFIESTO
                     </p>
                   </div>
 
                   <div>
-                    <p className="font-display text-2xl tracking-[0.06em] text-olive">
-                      REMATE FINAL
-                    </p>
-                    <p className="mt-3 max-w-2xl text-base leading-8 text-muted">
-                      Lo visual importa, pero nunca sustituye al sabor. Aquí una
-                      cosa tiene que estar a la altura de la otra.
-                    </p>
+                    <h2 className="max-w-4xl text-3xl font-bold leading-tight text-foreground md:text-5xl md:leading-[1.02]">
+                      Lorem ipsum dolor sit amet consectetur adipiscing elit
+                      faucibus orci penatibus, odio conubia litora bibendum
+                      metus praesent montes imperdiet cum nisl.
+                    </h2>
+
+                    <div className="mt-8 grid gap-6 md:grid-cols-2">
+                      <p className="text-base leading-8 text-muted">
+                        Lorem ipsum dolor sit amet consectetur adipiscing elit
+                        faucibus orci penatibus, odio conubia litora bibendum
+                        metus praesent montes imperdiet cum nisl, facilisi
+                        gravida cursus mollis nibh.
+                      </p>
+
+                      <p className="text-base leading-8 text-muted">
+                        Lorem ipsum dolor sit amet consectetur adipiscing elit
+                        faucibus orci penatibus, odio conubia litora bibendum
+                        metus praesent montes.
+                      </p>
+                    </div>
                   </div>
                 </div>
+              </div>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-background px-6 py-12 md:py-16">
+        <div className="mx-auto max-w-6xl">
+          <FadeIn amount={0.1}>
+            <div className="grid gap-8 border-y border-border py-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+              <div>
+                <p className="font-display text-xl tracking-[0.08em] text-olive">
+                  OBRA DESTACADA
+                </p>
+              </div>
+
+              <div>
+                <p className="max-w-3xl text-2xl font-bold leading-tight text-foreground md:text-4xl md:leading-[1.08]">
+                  Lorem ipsum dolor sit amet consectetur adipiscing elit
+                  faucibus orci penatibus.
+                </p>
+
+                <p className="mt-6 max-w-2xl text-base leading-8 text-muted">
+                  Lorem ipsum dolor sit amet consectetur adipiscing elit
+                  faucibus orci penatibus, odio conubia litora bibendum metus
+                  praesent montes imperdiet cum nisl, facilisi gravida cursus
+                  mollis nibh porttitor auctor aliquet morbi.
+                </p>
               </div>
             </div>
           </FadeIn>
@@ -172,6 +168,46 @@ export default function Home() {
       </section>
 
       <FeaturedProductsCarousel />
+
+      <section className="bg-background px-6 py-14 md:py-20">
+        <div className="mx-auto max-w-6xl">
+          <FadeIn amount={0.1}>
+            <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-end">
+              <div>
+                <p className="font-display text-xl tracking-[0.08em] text-olive">
+                  PIEZAS A MEDIDA
+                </p>
+
+                <h2 className="mt-4 font-display text-5xl leading-[0.86] tracking-[0.01em] text-foreground sm:text-6xl md:text-7xl">
+                  LO HACEMOS
+                  <br />
+                  A TU MANERA,
+                  <br />
+                  PERO CON
+                  <br />
+                  CRITERIO.
+                </h2>
+              </div>
+
+              <div className="lg:pl-10">
+                <p className="max-w-md text-base leading-8 text-muted">
+                  Lorem ipsum dolor sit amet consectetur adipiscing elit
+                  faucibus orci penatibus, odio conubia litora bibendum metus
+                  praesent montes imperdiet cum nisl, facilisi gravida cursus
+                  mollis nibh porttitor auctor.
+                </p>
+
+                <Link
+                  href="/contacto"
+                  className="mt-8 inline-flex rounded-full border border-olive bg-background px-6 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-foreground transition duration-300 hover:-translate-y-0.5 hover:border-olive hover:bg-olive hover:text-background"
+                >
+                  Quiero un encargo
+                </Link>
+              </div>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
     </main>
   );
 }

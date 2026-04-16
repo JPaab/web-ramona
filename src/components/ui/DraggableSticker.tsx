@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "motion/react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 type DraggableStickerProps = {
   className?: string;
@@ -20,6 +20,8 @@ export default function DraggableSticker({
   const [isActive, setIsActive] = useState(false);
   const [position, setPosition] = useState({ x: initialX, y: initialY });
 
+  const dragStartPositionRef = useRef({ x: initialX, y: initialY });
+
   return (
     <>
       <motion.div
@@ -28,18 +30,21 @@ export default function DraggableSticker({
         dragMomentum={false}
         onHoverStart={() => setIsActive(true)}
         onHoverEnd={() => setIsActive(false)}
-        onDragStart={() => setIsActive(true)}
-        onDragEnd={(_, info) => {
-          setIsActive(false);
-          setPosition({
-            x: initialX + info.offset.x,
-            y: initialY + info.offset.y,
-          });
+        onDragStart={() => {
+          setIsActive(true);
+          dragStartPositionRef.current = position;
         }}
         onDrag={(_, info) => {
           setPosition({
-            x: initialX + info.offset.x,
-            y: initialY + info.offset.y,
+            x: dragStartPositionRef.current.x + info.offset.x,
+            y: dragStartPositionRef.current.y + info.offset.y,
+          });
+        }}
+        onDragEnd={(_, info) => {
+          setIsActive(false);
+          setPosition({
+            x: dragStartPositionRef.current.x + info.offset.x,
+            y: dragStartPositionRef.current.y + info.offset.y,
           });
         }}
         className={`absolute z-20 cursor-grab active:cursor-grabbing ${className}`}
@@ -56,10 +61,9 @@ export default function DraggableSticker({
                 ? "/images/logo/sticker_hover.svg"
                 : "/images/logo/sticker.svg"
             }
-            alt="Asterisco"
+            alt="Sticker La Ramona"
             width={230}
             height={90}
-            priority
             draggable={false}
             className="pointer-events-none h-auto w-full"
           />

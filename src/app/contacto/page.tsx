@@ -6,7 +6,7 @@ export default function ContactoPage() {
   return (
     <main className="bg-background px-6 py-14 md:py-18">
       <div className="mx-auto max-w-6xl">
-        <FadeIn>
+        <FadeIn amount={0.08}>
           <section className="rounded-[2.5rem] border border-border bg-card p-8 shadow-sm md:p-10 lg:p-12">
             <div>
               <div className="mb-6 flex items-start justify-between gap-4">
@@ -26,9 +26,9 @@ export default function ContactoPage() {
               </h1>
 
               <p className="mt-6 max-w-2xl text-lg leading-8 text-muted">
-                Si quieres un encargo con presencia, una tarta con intención o
-                algo que no se parezca a lo de siempre, escríbenos y vemos cómo
-                llevarlo a nuestra manera.
+                Lorem ipsum dolor sit amet consectetur adipiscing elit faucibus
+                orci penatibus, odio conubia litora bibendum metus praesent
+                montes.
               </p>
 
               <div className="mt-10 grid gap-4 sm:grid-cols-2">
@@ -37,8 +37,8 @@ export default function ContactoPage() {
                     EVENTOS
                   </p>
                   <p className="mt-3 text-sm leading-6 text-muted">
-                    Cumpleaños, celebraciones, mesas dulces y encargos con algo
-                    más de carácter.
+                    Lorem ipsum dolor sit amet consectetur adipiscing elit
+                    faucibus orci.
                   </p>
                 </div>
 
@@ -47,7 +47,7 @@ export default function ContactoPage() {
                     A MEDIDA
                   </p>
                   <p className="mt-3 text-sm leading-6 text-muted">
-                    Adaptamos ideas y detalles sin volver el resultado genérico.
+                    Lorem ipsum dolor sit amet consectetur adipiscing elit.
                   </p>
                 </div>
               </div>
@@ -55,17 +55,14 @@ export default function ContactoPage() {
           </section>
         </FadeIn>
 
-        <section className="mt-10 grid gap-8 lg:grid-cols-[1fr_0.85fr]">
-          <FadeIn>
+        <FadeIn amount={0.14}>
+          <section className="mt-10 grid gap-8 lg:grid-cols-[1fr_0.85fr]">
             <div className="rounded-[2.5rem] border border-border bg-card p-6 shadow-sm md:p-8">
               <p className="font-display text-2xl tracking-[0.08em] text-olive">
                 ESCRÍBENOS
               </p>
 
-              <p className="mt-3 max-w-2xl text-sm leading-6 text-muted">
-                Esta versión del formulario es visual, pero ya deja clara la
-                energía con la que queremos que empiece la conversación.
-              </p>
+              <p className="mt-3 max-w-2xl text-sm leading-6 text-muted">V1</p>
 
               <form className="mt-8 space-y-5">
                 <div>
@@ -108,6 +105,7 @@ export default function ContactoPage() {
                   <select
                     id="tipo"
                     className="w-full rounded-[1.25rem] border border-border bg-background px-4 py-3 text-sm text-foreground outline-none transition duration-200 focus:border-olive"
+                    defaultValue="Encargo personalizado"
                   >
                     <option>Encargo personalizado</option>
                     <option>Tarta para evento</option>
@@ -131,18 +129,19 @@ export default function ContactoPage() {
                   />
                 </div>
 
-                <button
-                  type="button"
-                  className="rotate-[-1deg] rounded-full bg-foreground px-6 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-white shadow-sm transition duration-300 hover:-translate-y-0.5 hover:rotate-0 hover:shadow-md"
-                >
-                  Enviar consulta
-                </button>
+                <div className="flex flex-wrap items-center gap-4 pt-2">
+                  <button
+                    type="button"
+                    disabled
+                    className="cursor-not-allowed rounded-full border border-border bg-transparent px-6 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-foreground/60 opacity-70"
+                  >
+                    ENVIAR
+                  </button>
+                </div>
               </form>
             </div>
-          </FadeIn>
 
-          <StaggerGroup className="space-y-6">
-            <StaggerItem>
+            <div className="space-y-6">
               <div className="rounded-[2rem] border border-border bg-background p-6 shadow-sm">
                 <p className="font-display text-2xl tracking-[0.08em] text-olive">
                   HORARIO
@@ -151,35 +150,42 @@ export default function ContactoPage() {
                   Lunes a sábado · 09:00 a 19:00
                 </p>
               </div>
-            </StaggerItem>
 
-            <StaggerItem>
-              <div className="rounded-[2rem] border border-border bg-card p-6 shadow-sm">
-                <p className="font-display text-2xl tracking-[0.08em] text-olive">
-                  QUÉ PUEDES PEDIR
-                </p>
-                <ul className="mt-4 space-y-3 text-sm leading-6 text-muted">
-                  <li>• Tartas para cumpleaños y celebraciones</li>
-                  <li>• Cupcakes y mesas dulces</li>
-                  <li>• Encargos personalizados</li>
-                  <li>• Diseños con más identidad que la media</li>
-                </ul>
-              </div>
-            </StaggerItem>
+              <StaggerGroup
+                className="space-y-6"
+                amount={0.08}
+                stagger={0.14}
+                baseDelay={0.28}
+              >
+                <StaggerItem>
+                  <div className="rounded-[2rem] border border-border bg-card p-6 shadow-sm">
+                    <p className="font-display text-2xl tracking-[0.08em] text-olive">
+                      QUÉ PUEDES PEDIR
+                    </p>
+                    <ul className="mt-4 space-y-3 text-sm leading-6 text-muted">
+                      <li>• 1</li>
+                      <li>• 2</li>
+                      <li>• 3</li>
+                      <li>• 4</li>
+                    </ul>
+                  </div>
+                </StaggerItem>
 
-            <StaggerItem>
-              <div className="rotate-[1deg] rounded-[2rem] border border-border bg-foreground p-6 text-white shadow-sm">
-                <p className="font-display text-2xl tracking-[0.08em] text-olive">
-                  CONSEJO
-                </p>
-                <p className="mt-3 text-sm leading-7 text-white/80">
-                  Si quieres algo bueno de verdad, no lo dejes para el último
-                  momento.
-                </p>
-              </div>
-            </StaggerItem>
-          </StaggerGroup>
-        </section>
+                <StaggerItem>
+                  <div className="rotate-[1deg] rounded-[2rem] border border-border bg-foreground p-6 text-white shadow-sm">
+                    <p className="font-display text-2xl tracking-[0.08em] text-olive">
+                      CONSEJO
+                    </p>
+                    <p className="mt-3 text-sm leading-7 text-white/80">
+                      Lorem ipsum dolor sit amet consectetur adipiscing elit
+                      faucibus orci penatibus
+                    </p>
+                  </div>
+                </StaggerItem>
+              </StaggerGroup>
+            </div>
+          </section>
+        </FadeIn>
       </div>
     </main>
   );

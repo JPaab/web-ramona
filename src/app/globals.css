@@ -1,23 +1,49 @@
 @import "tailwindcss";
 
-@theme {
-  --color-background: #f6f1e8;
-  --color-foreground: #111111;
-
-  --color-olive: #6b7a3d;
-  --color-olive-dark: #556230;
-
-  --color-section: #eee6d7;
-  --color-card: #fbf7ef;
-  --color-footer: #e8decd;
-  --color-border: #d6ccba;
-  --color-muted: #5f5a52;
-}
-
 @theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-olive: var(--olive);
+  --color-olive-dark: var(--olive-dark);
+
+  --color-section: var(--section);
+  --color-card: var(--card);
+  --color-footer: var(--footer);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-display: var(--font-bebas);
+}
+
+:root {
+  --background: #f6f1e8;
+  --foreground: #111111;
+
+  --olive: #6b7a3d;
+  --olive-dark: #556230;
+
+  --section: #eee6d7;
+  --card: #fbf7ef;
+  --footer: #e8decd;
+  --border: #d6ccba;
+  --muted: #5f5a52;
+}
+
+.dark {
+  --background: #111111;
+  --foreground: #f6f1e8;
+
+  --olive: #8fa05b;
+  --olive-dark: #74834a;
+
+  --section: #171717;
+  --card: #1b1b1b;
+  --footer: #151515;
+  --border: #2f2f2f;
+  --muted: #b5ada0;
 }
 
 * {
@@ -25,7 +51,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 body {
