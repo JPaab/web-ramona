@@ -65,7 +65,7 @@ export default function ThemeToggle() {
           }`}
         />
         <span className="transition duration-300 group-hover:text-olive">
-          {mounted ? (isDark ? "SOMBRA" : "LUZ") : "LUZ / SOMBRA"}
+          {mounted ? (isDark ? "LUZ" : "SOMBRA") : "SOMBRA / LUZ"}
         </span>
       </span>
     </button>

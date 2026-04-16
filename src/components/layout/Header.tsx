@@ -15,6 +15,8 @@ import {
   type PointerEvent as ReactPointerEvent,
 } from "react";
 import { useCart } from "@/components/cart/CartProvider";
+import MiniCartPanel from "@/components/cart/MiniCartPanel";
+import { CART_ITEM_ADDED_EVENT } from "@/components/cart/cart-events";
 import ThemeToggle from "@/components/layout/ThemeToggle";
 
 const productTypes = [
@@ -30,18 +32,28 @@ const productTypes = [
 const mainLinks = [
   { name: "Contacto", href: "/contacto" },
   { name: "El museo", href: "/museo" },
-  { name: "Carrito", href: "/carrito" },
 ];
 
 export default function Header() {
   const [isProductsOpen, setIsProductsOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLogoHovered, setIsLogoHovered] = useState(false);
+  const [isMiniCartOpen, setIsMiniCartOpen] = useState(false);
+  const [isCartPulseActive, setIsCartPulseActive] = useState(false);
 
   const { itemCount } = useCart();
 
   const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const miniCartAutoCloseRef = useRef<ReturnType<typeof setTimeout> | null>(
+    null,
+  );
+  const cartPulseTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(
+    null,
+  );
+
   const logoRef = useRef<HTMLAnchorElement | null>(null);
+  const desktopMiniCartRef = useRef<HTMLDivElement | null>(null);
+  const mobileMiniCartRef = useRef<HTMLDivElement | null>(null);
 
   const stickerX = useMotionValue(0);
   const stickerY = useMotionValue(0);
@@ -63,6 +75,14 @@ export default function Header() {
       if (closeTimeoutRef.current) {
         clearTimeout(closeTimeoutRef.current);
       }
+
+      if (miniCartAutoCloseRef.current) {
+        clearTimeout(miniCartAutoCloseRef.current);
+      }
+
+      if (cartPulseTimeoutRef.current) {
+        clearTimeout(cartPulseTimeoutRef.current);
+      }
     };
   }, []);
 
@@ -71,6 +91,7 @@ export default function Header() {
       if (event.key === "Escape") {
         setIsProductsOpen(false);
         setIsMobileMenuOpen(false);
+        setIsMiniCartOpen(false);
       }
     };
 
@@ -78,6 +99,56 @@ export default function Header() {
 
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
+  useEffect(() => {
+    const handlePointerDown = (event: MouseEvent) => {
+      const target = event.target as Node;
+
+      const clickedInsideDesktop =
+        desktopMiniCartRef.current?.contains(target) ?? false;
+      const clickedInsideMobile =
+        mobileMiniCartRef.current?.contains(target) ?? false;
+
+      if (!clickedInsideDesktop && !clickedInsideMobile) {
+        setIsMiniCartOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handlePointerDown);
+
+    return () => {
+      document.removeEventListener("mousedown", handlePointerDown);
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleCartItemAdded = () => {
+      setIsMiniCartOpen(true);
+      setIsCartPulseActive(true);
+
+      if (miniCartAutoCloseRef.current) {
+        clearTimeout(miniCartAutoCloseRef.current);
+      }
+
+      if (cartPulseTimeoutRef.current) {
+        clearTimeout(cartPulseTimeoutRef.current);
+      }
+
+      miniCartAutoCloseRef.current = setTimeout(() => {
+        setIsMiniCartOpen(false);
+      }, 2600);
+
+      cartPulseTimeoutRef.current = setTimeout(() => {
+        setIsCartPulseActive(false);
+      }, 520);
+    };
+
+    window.addEventListener(CART_ITEM_ADDED_EVENT, handleCartItemAdded);
+
+    return () => {
+      window.removeEventListener(CART_ITEM_ADDED_EVENT, handleCartItemAdded);
     };
   }, []);
 
@@ -156,7 +227,6 @@ export default function Header() {
                         y: -4,
                         rotate: -2,
                         scale: 0.95,
-                        filter: "blur(2px)",
                       }
                     : {
                         opacity: 1,
@@ -164,7 +234,6 @@ export default function Header() {
                         y: 0,
                         rotate: 0,
                         scale: 1,
-                        filter: "blur(0px)",
                       }
                 }
                 transition={{
@@ -223,13 +292,13 @@ export default function Header() {
 
           <nav className="hidden items-center justify-center gap-6 md:flex lg:gap-8">
             <div
-              className="relative"
+              className="relative flex h-11 items-center"
               onMouseEnter={openProductsMenu}
               onMouseLeave={closeProductsMenu}
             >
               <Link
                 href="/productos"
-                className="group relative inline-flex items-center gap-1 text-sm font-semibold uppercase tracking-[0.12em] text-muted transition duration-200 hover:-translate-y-0.5 hover:text-foreground"
+                className="group relative inline-flex items-center gap-0 text-sm font-semibold uppercase tracking-[0.12em] text-muted transition duration-200 hover:-translate-y-0.5 hover:text-foreground"
               >
                 <span>Productos</span>
                 <motion.span
@@ -250,7 +319,7 @@ export default function Header() {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 8, scale: 0.98 }}
                     transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
-                    className="absolute left-1/2 top-full z-40 mt-8 -translate-x-1/2"
+                    className="absolute left-1/2 top-full z-40 mt-7.5 -translate-x-1/2"
                   >
                     <div className="w-[280px] rounded-[2rem] border border-border bg-background/90 p-3 shadow-sm backdrop-blur-xl">
                       <div className="flex flex-col">
@@ -282,6 +351,7 @@ export default function Header() {
                 ) : null}
               </AnimatePresence>
             </div>
+
             <Link
               href="/museo"
               className="group relative inline-flex min-h-[46px] items-end rounded-[1.1rem] border border-border/80 px-4 pb-2.5 pt-4 text-foreground transition duration-300 hover:-translate-y-0.5 hover:border-olive/70 hover:bg-foreground/[0.03]"
@@ -301,6 +371,7 @@ export default function Header() {
                 </span>
               </span>
             </Link>
+
             <Link
               href="/contacto"
               className="group relative inline-flex items-center text-sm font-semibold uppercase tracking-[0.12em] text-muted transition duration-200 hover:-translate-y-0.5 hover:text-foreground"
@@ -312,24 +383,83 @@ export default function Header() {
 
           <div className="flex min-w-0 items-center justify-end md:hidden">
             <div className="flex items-center gap-3">
-              <Link
-                href="/carrito"
-                className="relative inline-flex h-11 min-w-11 items-center justify-center rounded-full border border-border bg-background px-3 text-sm font-semibold uppercase tracking-[0.08em] text-foreground shadow-sm transition duration-200 hover:border-olive"
-                aria-label={`Ir al carrito${itemCount > 0 ? `, ${itemCount} artículos` : ""}`}
+              <div
+                ref={mobileMiniCartRef}
+                className="relative flex h-11 items-center"
               >
-                <span>C</span>
-                {itemCount > 0 ? (
-                  <span className="absolute -right-1 -top-1 inline-flex min-w-5 items-center justify-center rounded-full bg-olive px-1.5 py-0.5 text-[10px] font-bold leading-none text-background">
-                    {itemCount}
-                  </span>
-                ) : null}
-              </Link>
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (miniCartAutoCloseRef.current) {
+                      clearTimeout(miniCartAutoCloseRef.current);
+                    }
+
+                    setIsMiniCartOpen((prev) => !prev);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="group relative inline-flex h-11 w-11 items-center justify-center rounded-[1rem] border border-foreground bg-foreground text-background shadow-sm transition duration-300 hover:-translate-y-0.5 hover:border-olive hover:bg-olive"
+                  aria-expanded={isMiniCartOpen}
+                  aria-label={`Abrir carrito${
+                    itemCount > 0 ? `, ${itemCount} artículos` : ""
+                  }`}
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    className="h-[18px] w-[18px] transition duration-300 group-hover:translate-x-0.5"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.9"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <circle cx="9" cy="20" r="1.4" />
+                    <circle cx="18" cy="20" r="1.4" />
+                    <path d="M3 4h2l2.1 10.2a1 1 0 0 0 1 .8h9.7a1 1 0 0 0 1-.8L21 7H7.2" />
+                  </svg>
+
+                  {itemCount > 0 ? (
+                    <motion.span
+                      animate={
+                        isCartPulseActive
+                          ? {
+                              scale: [1, 1.18, 1],
+                            }
+                          : {
+                              scale: 1,
+                            }
+                      }
+                      transition={{
+                        duration: 0.36,
+                        ease: [0.22, 1, 0.36, 1],
+                      }}
+                      className={`absolute -right-1 -top-1 inline-flex min-w-5 items-center justify-center rounded-full px-1.5 py-0.5 text-[10px] font-bold leading-none ${
+                        isCartPulseActive
+                          ? "bg-background text-foreground"
+                          : "bg-olive text-background"
+                      }`}
+                    >
+                      {itemCount}
+                    </motion.span>
+                  ) : null}
+                </button>
+
+                <AnimatePresence>
+                  {isMiniCartOpen ? (
+                    <MiniCartPanel
+                      onNavigate={() => setIsMiniCartOpen(false)}
+                    />
+                  ) : null}
+                </AnimatePresence>
+              </div>
 
               <ThemeToggle />
 
               <button
                 type="button"
-                onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+                onClick={() => {
+                  setIsMobileMenuOpen((prev) => !prev);
+                  setIsMiniCartOpen(false);
+                }}
                 aria-expanded={isMobileMenuOpen}
                 aria-controls="mobile-menu"
                 aria-label={
@@ -345,19 +475,59 @@ export default function Header() {
           </div>
 
           <div className="hidden md:flex min-w-0 items-center justify-end pr-16 lg:pr-20">
-            <Link
-              href="/carrito"
-              className="group relative inline-flex items-center gap-3 rounded-full border border-border bg-background px-4 py-2 text-sm font-semibold uppercase tracking-[0.08em] text-foreground shadow-sm transition duration-300 hover:-translate-y-0.5 hover:border-olive"
-              aria-label={`Ir al carrito${itemCount > 0 ? `, ${itemCount} artículos` : ""}`}
+            <div
+              ref={desktopMiniCartRef}
+              className="relative flex h-11 items-center"
             >
-              <span className="text-muted transition duration-300 group-hover:text-foreground">
-                Carrito
-              </span>
+              <button
+                type="button"
+                onClick={() => {
+                  if (miniCartAutoCloseRef.current) {
+                    clearTimeout(miniCartAutoCloseRef.current);
+                  }
 
-              <span className="inline-flex min-w-6 items-center justify-center rounded-full border border-border px-2 py-1 text-[10px] leading-none text-foreground transition duration-300 group-hover:border-olive">
-                {itemCount}
-              </span>
-            </Link>
+                  setIsMiniCartOpen((prev) => !prev);
+                }}
+                className="group relative inline-flex items-center gap-3 rounded-full border border-border bg-background px-4 py-2 text-sm font-semibold uppercase tracking-[0.08em] text-foreground shadow-sm transition duration-300 hover:-translate-y-0.5 hover:border-olive"
+                aria-expanded={isMiniCartOpen}
+                aria-label={`Abrir carrito${
+                  itemCount > 0 ? `, ${itemCount} artículos` : ""
+                }`}
+              >
+                <span className="text-muted transition duration-300 group-hover:text-foreground">
+                  Carrito
+                </span>
+
+                <motion.span
+                  animate={
+                    isCartPulseActive
+                      ? {
+                          scale: [1, 1.16, 1],
+                        }
+                      : {
+                          scale: 1,
+                        }
+                  }
+                  transition={{
+                    duration: 0.36,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  className={`inline-flex min-w-6 items-center justify-center rounded-full border px-2 py-1 text-[10px] leading-none transition duration-300 ${
+                    isCartPulseActive
+                      ? "border-olive bg-olive text-background"
+                      : "border-border text-foreground group-hover:border-olive"
+                  }`}
+                >
+                  {itemCount}
+                </motion.span>
+              </button>
+
+              <AnimatePresence>
+                {isMiniCartOpen ? (
+                  <MiniCartPanel onNavigate={() => setIsMiniCartOpen(false)} />
+                ) : null}
+              </AnimatePresence>
+            </div>
           </div>
         </div>
 
