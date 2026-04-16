@@ -8,20 +8,32 @@ import {
 } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRef, useState } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type PointerEvent as ReactPointerEvent,
+} from "react";
+import ThemeToggle from "@/components/layout/ThemeToggle";
 
 const productTypes = [
   { name: "Tartas", href: "/productos" },
   { name: "Cupcakes", href: "/productos" },
-  { name: "Cold Cheesecakes", href: "/productos" },
+  { name: "Cold cheesecakes", href: "/productos" },
   { name: "Mesas dulces", href: "/productos" },
-  { name: "New York Cookies", href: "/productos" },
+  { name: "New York cookies", href: "/productos" },
   { name: "Tartas de queso", href: "/productos" },
   { name: "Encargos personalizados", href: "/contacto" },
 ];
 
+const mainLinks = [
+  { name: "Contacto", href: "/contacto" },
+  { name: "El museo", href: "/museo" },
+];
+
 export default function Header() {
   const [isProductsOpen, setIsProductsOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLogoHovered, setIsLogoHovered] = useState(false);
 
   const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -42,6 +54,29 @@ export default function Header() {
     mass: 0.7,
   });
 
+  useEffect(() => {
+    return () => {
+      if (closeTimeoutRef.current) {
+        clearTimeout(closeTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsProductsOpen(false);
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
   const openProductsMenu = () => {
     if (closeTimeoutRef.current) {
       clearTimeout(closeTimeoutRef.current);
@@ -53,12 +88,10 @@ export default function Header() {
   const closeProductsMenu = () => {
     closeTimeoutRef.current = setTimeout(() => {
       setIsProductsOpen(false);
-    }, 220);
+    }, 180);
   };
 
-  const updateStickerTarget = (
-    event: React.PointerEvent<HTMLAnchorElement>,
-  ) => {
+  const updateStickerTarget = (event: ReactPointerEvent<HTMLAnchorElement>) => {
     if (!logoRef.current) return;
 
     const rect = logoRef.current.getBoundingClientRect();
@@ -75,7 +108,7 @@ export default function Header() {
     stickerY.set(normalizedY * 32);
   };
 
-  const handleLogoEnter = (event: React.PointerEvent<HTMLAnchorElement>) => {
+  const handleLogoEnter = (event: ReactPointerEvent<HTMLAnchorElement>) => {
     setIsLogoHovered(true);
     updateStickerTarget(event);
   };
@@ -86,186 +119,286 @@ export default function Header() {
     stickerY.set(0);
   };
 
-  const handleLogoMove = (event: React.PointerEvent<HTMLAnchorElement>) => {
+  const handleLogoMove = (event: ReactPointerEvent<HTMLAnchorElement>) => {
     updateStickerTarget(event);
   };
 
   return (
     <motion.header
-      className="sticky top-0 z-50 border-b border-border bg-background/85 backdrop-blur-xl"
+      className="sticky top-0 z-50 border-b border-border bg-background/60 backdrop-blur-xl"
       initial={{ y: -16, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <Link
-          ref={logoRef}
-          href="/"
-          aria-label="Ir al inicio"
-          onPointerEnter={handleLogoEnter}
-          onPointerLeave={handleLogoLeave}
-          onPointerMove={handleLogoMove}
-          className="relative block h-[62px] w-[170px] overflow-visible md:w-[190px]"
-        >
-          <motion.div
-            initial={false}
-            animate={
-              isLogoHovered
-                ? {
-                    opacity: 0,
-                    x: 12,
-                    y: -4,
-                    rotate: -2,
-                    scale: 0.95,
-                    filter: "blur(2px)",
-                  }
-                : {
-                    opacity: 1,
-                    x: 0,
-                    y: 0,
-                    rotate: 0,
-                    scale: 1,
-                    filter: "blur(0px)",
-                  }
-            }
-            transition={{
-              type: "spring",
-              stiffness: 300,
-              damping: 24,
-              mass: 0.9,
-            }}
-            className="absolute inset-0"
-          >
-            <Image
-              src="/images/logo/horizontal.svg"
-              alt="La Ramona"
-              fill
-              priority
-              className="object-contain"
-            />
-          </motion.div>
-
-          <motion.div
-            initial={false}
-            style={{ x: smoothX, y: smoothY }}
-            animate={
-              isLogoHovered
-                ? {
-                    opacity: 1,
-                    rotate: -5,
-                    scale: 1,
-                    filter: "blur(0px)",
-                  }
-                : {
-                    opacity: 0,
-                    rotate: -12,
-                    scale: 0.78,
-                    filter: "blur(1px)",
-                  }
-            }
-            transition={{
-              type: "spring",
-              stiffness: 340,
-              damping: 20,
-              mass: 0.8,
-            }}
-            className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-          >
-            <Image
-              src="/images/logo/sticker.svg"
-              alt="La Ramona sticker"
-              width={92}
-              height={92}
-              priority
-              className="h-auto w-[82px] md:w-[88px]"
-            />
-          </motion.div>
-        </Link>
-
-        <nav className="hidden items-center gap-8 md:flex">
-          <Link
-            href="/"
-            className="group relative inline-flex -translate-y-0 items-center text-sm font-semibold uppercase tracking-[0.12em] text-muted transition duration-200 hover:-translate-y-0.5 hover:text-foreground"
-          >
-            <span>Inicio</span>
-            <span className="absolute left-0 top-full mt-1 h-[2px] w-0 rounded-full bg-olive transition-all duration-200 group-hover:w-full" />
-          </Link>
-
-          <div className="relative">
+      <div className="relative">
+        <div className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-6 px-6 py-4">
+          <div className="flex min-w-0 items-center justify-start">
             <Link
-              href="/productos"
-              onMouseEnter={openProductsMenu}
-              onMouseLeave={closeProductsMenu}
+              ref={logoRef}
+              href="/"
+              aria-label="Ir al inicio"
+              onPointerEnter={handleLogoEnter}
+              onPointerLeave={handleLogoLeave}
+              onPointerMove={handleLogoMove}
+              className="relative block h-[62px] w-[170px] overflow-visible md:w-[190px]"
+            >
+              <motion.div
+                initial={false}
+                animate={
+                  isLogoHovered
+                    ? {
+                        opacity: 0,
+                        x: 12,
+                        y: -4,
+                        rotate: -2,
+                        scale: 0.95,
+                        filter: "blur(2px)",
+                      }
+                    : {
+                        opacity: 1,
+                        x: 0,
+                        y: 0,
+                        rotate: 0,
+                        scale: 1,
+                        filter: "blur(0px)",
+                      }
+                }
+                transition={{
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 24,
+                  mass: 0.9,
+                }}
+                className="absolute inset-0"
+              >
+                <Image
+                  src="/images/logo/horizontal.svg"
+                  alt="La Ramona"
+                  fill
+                  priority
+                  className="object-contain"
+                />
+              </motion.div>
+
+              <motion.div
+                initial={false}
+                style={{ x: smoothX, y: smoothY }}
+                animate={
+                  isLogoHovered
+                    ? {
+                        opacity: 1,
+                        rotate: -5,
+                        scale: 1,
+                        filter: "blur(0px)",
+                      }
+                    : {
+                        opacity: 0,
+                        rotate: -12,
+                        scale: 0.78,
+                        filter: "blur(1px)",
+                      }
+                }
+                transition={{
+                  type: "spring",
+                  stiffness: 340,
+                  damping: 20,
+                  mass: 0.8,
+                }}
+                className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+              >
+                <Image
+                  src="/images/logo/sticker.svg"
+                  alt="La Ramona sticker"
+                  width={92}
+                  height={92}
+                  className="h-auto w-[82px] md:w-[88px]"
+                />
+              </motion.div>
+            </Link>
+          </div>
+
+          <nav className="hidden items-center justify-center gap-6 md:flex lg:gap-8">
+            <Link
+              href="/"
               className="group relative inline-flex items-center text-sm font-semibold uppercase tracking-[0.12em] text-muted transition duration-200 hover:-translate-y-0.5 hover:text-foreground"
             >
-              Productos
-              <motion.span
-                animate={{ rotate: isProductsOpen ? 180 : 0 }}
-                transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-                className="inline-flex h-3.5 w-3.5 items-center justify-center"
-              >
-                <span className="block text-[0.95rem] leading-none">↓</span>
-              </motion.span>
               <span className="absolute left-0 top-full mt-1 h-[2px] w-0 rounded-full bg-olive transition-all duration-200 group-hover:w-full" />
             </Link>
 
-            <AnimatePresence>
-              {isProductsOpen ? (
-                <motion.div
-                  initial={{ opacity: 0, y: 10, scale: 0.98 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: 8, scale: 0.98 }}
-                  transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
-                  onMouseEnter={openProductsMenu}
-                  onMouseLeave={closeProductsMenu}
-                  className="absolute left-1/2 top-full z-40 -translate-x-1/2 mt-8"
+            <div
+              className="relative"
+              onMouseEnter={openProductsMenu}
+              onMouseLeave={closeProductsMenu}
+            >
+              <Link
+                href="/productos"
+                className="group relative inline-flex items-center gap-1 text-sm font-semibold uppercase tracking-[0.12em] text-muted transition duration-200 hover:-translate-y-0.5 hover:text-foreground"
+              >
+                <span>Productos</span>
+                <motion.span
+                  animate={{ rotate: isProductsOpen ? 180 : 0 }}
+                  transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+                  className="inline-flex h-3.5 w-3.5 items-center justify-center"
                 >
-                  <div className="w-[260px] rounded-[2rem] border border-border bg-background/85 p-3 shadow-sm backdrop-blur-xl">
-                    <div className="flex flex-col">
-                      {productTypes.map((item, index) => (
-                        <Link
-                          key={item.name}
-                          href={item.href}
-                          className={`group block px-4 py-4 ${
-                            index < productTypes.length - 1
-                              ? "border-b border-border"
-                              : ""
-                          }`}
-                        >
-                          <div className="flex items-center justify-between gap-4">
-                            <p className="font-display text-2xl leading-none tracking-[0.04em] text-foreground transition duration-200 group-hover:scale-[1.06] group-hover:text-olive">
-                              {item.name}
-                            </p>
+                  <span className="block text-[0.95rem] leading-none">↓</span>
+                </motion.span>
+                <span className="absolute left-0 top-full mt-1 h-[2px] w-0 rounded-full bg-olive transition-all duration-200 group-hover:w-full" />
+              </Link>
 
-                            <span className="text-sm text-muted opacity-60 transition duration-200 group-hover:translate-x-1 group-hover:opacity-100 group-hover:text-olive">
-                              →
-                            </span>
-                          </div>
-                        </Link>
-                      ))}
+              <AnimatePresence>
+                {isProductsOpen ? (
+                  <motion.div
+                    id="desktop-products-menu"
+                    initial={{ opacity: 0, y: 10, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 8, scale: 0.98 }}
+                    transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
+                    className="absolute left-1/2 top-full z-40 mt-8 -translate-x-1/2"
+                  >
+                    <div className="w-[280px] rounded-[2rem] border border-border bg-background/90 p-3 shadow-sm backdrop-blur-xl">
+                      <div className="flex flex-col">
+                        {productTypes.map((item, index) => (
+                          <Link
+                            key={item.name}
+                            href={item.href}
+                            onClick={() => setIsProductsOpen(false)}
+                            className={`group block px-4 py-4 ${
+                              index < productTypes.length - 1
+                                ? "border-b border-border"
+                                : ""
+                            }`}
+                          >
+                            <div className="flex items-center justify-between gap-4">
+                              <p className="font-display text-2xl leading-none tracking-[0.04em] text-foreground transition duration-200 group-hover:scale-[1.03] group-hover:text-olive">
+                                {item.name}
+                              </p>
+
+                              <span className="text-sm text-muted opacity-60 transition duration-200 group-hover:translate-x-1 group-hover:opacity-100 group-hover:text-olive">
+                                →
+                              </span>
+                            </div>
+                          </Link>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                </motion.div>
-              ) : null}
-            </AnimatePresence>
+                  </motion.div>
+                ) : null}
+              </AnimatePresence>
+            </div>
+            <Link
+              href="/museo"
+              className="group relative inline-flex min-h-[46px] items-end rounded-[1.1rem] border border-border/80 px-4 pb-2.5 pt-4 text-foreground transition duration-300 hover:-translate-y-0.5 hover:border-olive/70 hover:bg-foreground/[0.03]"
+            >
+              <span className="pointer-events-none absolute left-4 top-2 text-[9px] font-semibold uppercase tracking-[0.22em] text-muted transition duration-300 group-hover:text-olive">
+                Archivo
+              </span>
+
+              <span className="flex items-center gap-3">
+                <span className="relative text-sm font-semibold uppercase tracking-[0.16em] text-muted transition duration-300 group-hover:text-foreground">
+                  El museo
+                  <span className="absolute left-0 top-[calc(100%+6px)] h-px w-8 bg-olive/80 transition-all duration-300 group-hover:w-full" />
+                </span>
+
+                <span className="text-xs text-olive/80 transition duration-300 group-hover:translate-x-0.5 group-hover:text-olive">
+                  ↗
+                </span>
+              </span>
+            </Link>
+            <Link
+              href="/contacto"
+              className="group relative inline-flex items-center text-sm font-semibold uppercase tracking-[0.12em] text-muted transition duration-200 hover:-translate-y-0.5 hover:text-foreground"
+            >
+              <span>Contacto</span>
+              <span className="absolute left-0 top-full mt-1 h-[2px] w-0 rounded-full bg-olive transition-all duration-200 group-hover:w-full" />
+            </Link>
+          </nav>
+          <div className="flex min-w-0 items-center justify-end md:hidden">
+            <div className="flex items-center gap-3">
+              <ThemeToggle />
+
+              <button
+                type="button"
+                onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+                aria-expanded={isMobileMenuOpen}
+                aria-controls="mobile-menu"
+                aria-label={
+                  isMobileMenuOpen ? "Cerrar navegación" : "Abrir navegación"
+                }
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-background text-foreground shadow-sm transition duration-200 hover:border-olive"
+              >
+                <span className="text-lg leading-none">
+                  {isMobileMenuOpen ? "×" : "≡"}
+                </span>
+              </button>
+            </div>
           </div>
+        </div>
 
-          <Link
-            href="/contacto"
-            className="group relative inline-flex items-center text-sm font-semibold uppercase tracking-[0.12em] text-muted transition duration-200 hover:-translate-y-0.5 hover:text-foreground"
-          >
-            <span>Contacto</span>
-            <span className="absolute left-0 top-full mt-1 h-[2px] w-0 rounded-full bg-olive transition-all duration-200 group-hover:w-full" />
-          </Link>
-        </nav>
-
-        <Link
-          href="/museo"
-          className="rotate-[-2deg] rounded-full border border-border bg-background px-6 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-foreground shadow-sm transition duration-300 hover:-translate-y-0.5 hover:rotate-0 hover:border-olive hover:bg-background hover:text-white hover:shadow-md"
-        >
-          EL MUSEO
-        </Link>
+        <div className="pointer-events-none absolute inset-y-0 right-6 hidden items-center md:flex lg:right-8">
+          <div className="pointer-events-auto">
+            <ThemeToggle />
+          </div>
+        </div>
       </div>
+
+      <AnimatePresence>
+        {isMobileMenuOpen ? (
+          <motion.div
+            id="mobile-menu"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
+            className="border-t border-border bg-background/95 px-6 pb-6 pt-5 backdrop-blur-xl md:hidden"
+          >
+            <div className="mx-auto max-w-6xl">
+              <nav className="flex flex-col">
+                {mainLinks.map((item, index) => (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={`py-4 text-lg font-semibold uppercase tracking-[0.08em] text-foreground ${
+                      index < mainLinks.length - 1
+                        ? "border-b border-border"
+                        : ""
+                    }`}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </nav>
+
+              <div className="mt-6 rounded-[2rem] border border-border bg-card p-4">
+                <Link
+                  href="/productos"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="inline-flex text-2xl font-display tracking-[0.08em] text-olive transition duration-200 hover:text-foreground"
+                >
+                  Productos
+                </Link>
+
+                <div className="mt-4 flex flex-col">
+                  {productTypes.map((item, index) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className={`py-3 text-sm font-semibold uppercase tracking-[0.08em] text-muted transition duration-200 hover:text-foreground ${
+                        index < productTypes.length - 1
+                          ? "border-b border-border"
+                          : ""
+                      }`}
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
     </motion.header>
   );
 }
