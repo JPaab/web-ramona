@@ -14,6 +14,7 @@ import {
   useState,
   type PointerEvent as ReactPointerEvent,
 } from "react";
+import { useCart } from "@/components/cart/CartProvider";
 import ThemeToggle from "@/components/layout/ThemeToggle";
 
 const productTypes = [
@@ -29,12 +30,15 @@ const productTypes = [
 const mainLinks = [
   { name: "Contacto", href: "/contacto" },
   { name: "El museo", href: "/museo" },
+  { name: "Carrito", href: "/carrito" },
 ];
 
 export default function Header() {
   const [isProductsOpen, setIsProductsOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLogoHovered, setIsLogoHovered] = useState(false);
+
+  const { itemCount } = useCart();
 
   const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const logoRef = useRef<HTMLAnchorElement | null>(null);
@@ -218,13 +222,6 @@ export default function Header() {
           </div>
 
           <nav className="hidden items-center justify-center gap-6 md:flex lg:gap-8">
-            <Link
-              href="/"
-              className="group relative inline-flex items-center text-sm font-semibold uppercase tracking-[0.12em] text-muted transition duration-200 hover:-translate-y-0.5 hover:text-foreground"
-            >
-              <span className="absolute left-0 top-full mt-1 h-[2px] w-0 rounded-full bg-olive transition-all duration-200 group-hover:w-full" />
-            </Link>
-
             <div
               className="relative"
               onMouseEnter={openProductsMenu}
@@ -312,8 +309,22 @@ export default function Header() {
               <span className="absolute left-0 top-full mt-1 h-[2px] w-0 rounded-full bg-olive transition-all duration-200 group-hover:w-full" />
             </Link>
           </nav>
+
           <div className="flex min-w-0 items-center justify-end md:hidden">
             <div className="flex items-center gap-3">
+              <Link
+                href="/carrito"
+                className="relative inline-flex h-11 min-w-11 items-center justify-center rounded-full border border-border bg-background px-3 text-sm font-semibold uppercase tracking-[0.08em] text-foreground shadow-sm transition duration-200 hover:border-olive"
+                aria-label={`Ir al carrito${itemCount > 0 ? `, ${itemCount} artículos` : ""}`}
+              >
+                <span>C</span>
+                {itemCount > 0 ? (
+                  <span className="absolute -right-1 -top-1 inline-flex min-w-5 items-center justify-center rounded-full bg-olive px-1.5 py-0.5 text-[10px] font-bold leading-none text-background">
+                    {itemCount}
+                  </span>
+                ) : null}
+              </Link>
+
               <ThemeToggle />
 
               <button
@@ -331,6 +342,22 @@ export default function Header() {
                 </span>
               </button>
             </div>
+          </div>
+
+          <div className="hidden md:flex min-w-0 items-center justify-end pr-16 lg:pr-20">
+            <Link
+              href="/carrito"
+              className="group relative inline-flex items-center gap-3 rounded-full border border-border bg-background px-4 py-2 text-sm font-semibold uppercase tracking-[0.08em] text-foreground shadow-sm transition duration-300 hover:-translate-y-0.5 hover:border-olive"
+              aria-label={`Ir al carrito${itemCount > 0 ? `, ${itemCount} artículos` : ""}`}
+            >
+              <span className="text-muted transition duration-300 group-hover:text-foreground">
+                Carrito
+              </span>
+
+              <span className="inline-flex min-w-6 items-center justify-center rounded-full border border-border px-2 py-1 text-[10px] leading-none text-foreground transition duration-300 group-hover:border-olive">
+                {itemCount}
+              </span>
+            </Link>
           </div>
         </div>
 
