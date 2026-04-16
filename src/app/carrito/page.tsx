@@ -193,13 +193,12 @@ export default function CarritoPage() {
                 </p>
 
                 <div className="mt-8 flex flex-col gap-3">
-                  <button
-                    type="button"
-                    disabled
-                    className="cursor-not-allowed rounded-full border border-border bg-foreground px-6 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-background opacity-80"
+                  <Link
+                    href="/checkout"
+                    className="inline-flex justify-center rounded-full border border-olive bg-background px-6 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-background transition duration-300 hover:-translate-y-0.5 hover:border-olive hover:bg-olive"
                   >
-                    PAGO SEGURO
-                  </button>
+                    Pago Seguro
+                  </Link>
 
                   <Link
                     href="/productos"

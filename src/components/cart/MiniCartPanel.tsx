@@ -83,7 +83,6 @@ export default function MiniCartPanel({ onNavigate }: MiniCartPanelProps) {
               en tu selección
             </p>
           ) : null}
-
           <div className="mt-5 flex flex-col gap-3 border-t border-border pt-4">
             <Link
               href="/carrito"
@@ -94,9 +93,17 @@ export default function MiniCartPanel({ onNavigate }: MiniCartPanelProps) {
             </Link>
 
             <Link
-              href="/productos"
+              href="/checkout"
               onClick={onNavigate}
               className="inline-flex justify-center rounded-full border border-border bg-transparent px-6 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-foreground transition duration-300 hover:-translate-y-0.5 hover:border-olive hover:text-olive"
+            >
+              Ir a checkout
+            </Link>
+
+            <Link
+              href="/productos"
+              onClick={onNavigate}
+              className="inline-flex justify-center text-[11px] font-semibold uppercase tracking-[0.12em] text-muted transition duration-200 hover:text-foreground"
             >
               Seguir viendo piezas
             </Link>
