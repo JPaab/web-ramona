@@ -6,97 +6,79 @@ import StaggerItem from "@/components/motion/StaggerItem";
 
 export default function ProductosPage() {
   return (
-    <main className="bg-background px-6 py-14 md:py-18">
+    <main className="bg-background px-6 pb-16 pt-12 md:pb-20 md:pt-16">
       <div className="mx-auto max-w-6xl">
-        <FadeIn>
-          <section className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
-            <div className="relative rounded-[2.5rem] border border-border bg-card p-8 shadow-sm md:p-10 lg:p-12">
-              <div className="absolute right-4 top-5 rotate-[4deg] rounded-full border border-border bg-foreground px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-white shadow-sm md:right-8">
-                NO HAY RELLENO
-              </div>
-
-              <p className="font-display text-2xl tracking-[0.08em] text-olive">
-                CATÁLOGO
-              </p>
-
-              <h1 className="mt-5 font-display text-6xl leading-[0.92] tracking-[0.01em] text-foreground sm:text-7xl lg:text-[8rem]">
-                COSAS QUE
-                <br />
-                ENTRAN
-                <br />
-                FUERTE
-              </h1>
-
-              <p className="mt-6 max-w-xl text-lg leading-8 text-muted">
-                Lorem ipsum dolor sit amet consectetur adipiscing elit, montes
-                condimentum odio senectus faucibus habitasse, arcu class orci
-                aliquam a blandit.
-              </p>
-            </div>
-
-            <div className="grid gap-6">
-              <div className="rounded-[2.5rem] bg-foreground p-8 text-white shadow-sm md:p-10">
-                <p className="font-display text-xl tracking-[0.08em] text-olive">
+        <section className="border-b border-border pb-10">
+          <FadeIn amount={0.08}>
+            <div className="grid gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-start">
+              <div>
+                <p className="font-display text-2xl tracking-[0.08em] text-olive">
                   SELECCIÓN
                 </p>
 
-                <h2 className="mt-4 font-display text-4xl leading-[0.95] tracking-[0.01em] sm:text-5xl">
-                  AQUÍ NO
+                <h1 className="mt-5 font-display text-[4.5rem] leading-[0.82] tracking-[0.01em] text-foreground sm:text-[5.8rem] lg:text-[8rem]">
+                  PIEZAS
                   <br />
-                  HAY NADA
+                  QUE
                   <br />
-                  TÍMIDO
-                </h2>
-
-                <p className="mt-6 max-w-sm text-sm leading-7 text-white/75">
-                  Lorem ipsum dolor sit amet consectetur adipiscing elit, montes
-                  condimentum odio senectus faucibus habitasse, arcu class orci
-                  aliquam a blandit.
-                </p>
+                  ENTRAN
+                  <br />
+                  FUERTE.
+                </h1>
               </div>
 
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div className="rotate-[-2deg] rounded-[2rem] border border-border bg-background p-5 shadow-sm">
-                  <p className="font-display text-xl tracking-[0.08em] text-olive">
-                    {products.length} PIEZAS
-                  </p>
-                  <p className="mt-3 max-w-[18rem] text-lg font-bold leading-tight text-foreground">
-                    Una primera selección con bastante carácter.
-                  </p>
-                </div>
+              <div className="lg:pt-8">
+                <p className="max-w-md text-lg leading-8 text-muted">
+                  Lorem ipsum dolor sit amet consectetur adipiscing elit
+                  faucibus orci penatibus, odio conubia litora bibendum metus.
+                </p>
 
-                <div className="translate-y-3 rotate-[2deg] rounded-[2rem] border border-border bg-card p-5 shadow-sm">
-                  <p className="font-display text-xl tracking-[0.08em] text-olive">
-                    PERSONALIZABLE
-                  </p>
-                  <p className="mt-3 max-w-[18rem] text-lg font-bold leading-tight text-foreground">
-                    Adaptable, sí. Genérico, no.
-                  </p>
+                <div className="mt-10 space-y-8">
+                  <div>
+                    <p className="font-display text-3xl leading-none tracking-[0.05em] text-foreground">
+                      {products.length} PIEZAS
+                    </p>
+                    <p className="mt-3 max-w-sm text-sm leading-7 text-muted">
+                      Lorem ipsum dolor sit amet consectetur adipiscing elit
+                      faucibus orci penatibus.
+                    </p>
+                  </div>
+
+                  <div>
+                    <p className="font-display text-3xl leading-none tracking-[0.05em] text-foreground">
+                      A MEDIDA
+                    </p>
+                    <p className="mt-3 max-w-sm text-sm leading-7 text-muted">
+                      Lorem ipsum dolor sit amet consectetur adipiscing elit
+                      faucibus orci penatibus.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
-          </section>
-        </FadeIn>
+          </FadeIn>
+        </section>
 
-        <section className="mt-10">
-          <FadeIn>
-            <div className="mb-8 flex items-end justify-between gap-6">
+        <section className="pt-10">
+          <FadeIn amount={0.1} delay={0.02}>
+            <div className="mb-10 grid gap-6 border-b border-border pb-6 md:grid-cols-[1fr_auto] md:items-end">
               <div>
                 <p className="font-display text-xl tracking-[0.08em] text-olive">
-                  PRODUCTOS
+                  OBRA DISPONIBLE
                 </p>
-                <h2 className="mt-2 text-3xl font-bold text-foreground">
-                  Lo que tenemos ahora mismo
+                <h2 className="mt-2 text-3xl font-bold leading-tight text-foreground md:text-4xl">
+                  Una selección de piezas con presencia propia.
                 </h2>
               </div>
-
-              <p className="text-sm font-medium uppercase tracking-[0.08em] text-muted">
-                JPAAB
-              </p>
             </div>
           </FadeIn>
 
-          <StaggerGroup className="grid gap-8 sm:grid-cols-2 xl:grid-cols-4">
+          <StaggerGroup
+            className="grid gap-x-8 gap-y-14 md:grid-cols-2"
+            amount={0.08}
+            stagger={0.08}
+            baseDelay={0.04}
+          >
             {products.map((product) => (
               <StaggerItem key={product.id}>
                 <ProductCard product={product} />
