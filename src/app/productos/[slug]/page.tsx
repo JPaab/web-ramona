@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { products } from "@/data/products";
 import FadeIn from "@/components/motion/FadeIn";
+import AddToCartButton from "@/components/cart/AddToCartButton";
 
 type ProductDetailPageProps = {
   params: Promise<{
@@ -19,6 +20,9 @@ export default async function ProductDetailPage({
   if (!product) {
     notFound();
   }
+
+  const isCartProduct = product.purchaseMode === "cart";
+  const isEnquiryProduct = product.purchaseMode === "enquiry";
 
   return (
     <main className="bg-background px-6 pb-16 pt-12 md:pb-20 md:pt-16">
@@ -81,18 +85,55 @@ export default async function ProductDetailPage({
                     Estado
                   </p>
                   <p className="mt-2 text-sm font-semibold uppercase tracking-[0.08em] text-olive">
-                    Bajo encargo
+                    {product.availability === "in_stock"
+                      ? "Disponible"
+                      : product.availability === "made_to_order"
+                        ? "Bajo encargo"
+                        : "Agotado"}
                   </p>
                 </div>
               </div>
 
               <div className="mt-8 flex flex-wrap gap-4">
-                <Link
-                  href="/contacto"
-                  className="inline-flex rounded-full border border-olive bg-background px-6 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-background transition duration-300 hover:-translate-y-0.5 hover:border-olive hover:bg-olive"
-                >
-                  Pedir esta pieza
-                </Link>
+                {isCartProduct ? (
+                  <>
+                    <AddToCartButton product={product} />
+
+                    <Link
+                      href="/contacto"
+                      className="inline-flex rounded-full border border-border bg-transparent px-6 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-foreground transition duration-300 hover:-translate-y-0.5 hover:border-olive hover:text-olive"
+                    >
+                      Consultar esta pieza
+                    </Link>
+                  </>
+                ) : null}
+
+                {isEnquiryProduct ? (
+                  <>
+                    <Link
+                      href="/contacto"
+                      className="inline-flex rounded-full border border-olive bg-background px-6 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-background transition duration-300 hover:-translate-y-0.5 hover:border-olive hover:bg-olive"
+                    >
+                      Pedir esta pieza
+                    </Link>
+
+                    <button
+                      type="button"
+                      disabled
+                      className="cursor-not-allowed rounded-full border border-border bg-transparent px-6 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-foreground/60 opacity-70"
+                    >
+                      Carrito no disponible
+                    </button>
+                  </>
+                ) : null}
+              </div>
+
+              <div className="mt-4">
+                <p className="text-xs leading-6 text-muted">
+                  {isCartProduct
+                    ? "Esta pieza entra en compra directa y se puede añadir al carrito."
+                    : "Esta pieza se trabaja por encargo para mantener control de acabado, presencia y personalización."}
+                </p>
               </div>
 
               <div className="mt-12 border-t border-border pt-8">
@@ -103,7 +144,9 @@ export default async function ProductDetailPage({
                     </p>
                     <p className="mt-3 max-w-sm text-sm leading-7 text-muted">
                       Lorem ipsum dolor sit amet consectetur adipiscing elit
-                      faucibus orci penatibus.
+                      mauris nascetur commodo fringilla, viverra interdum
+                      pharetra magnis sociosqu blandit molestie lacinia mattis
+                      metus.
                     </p>
                   </div>
 
@@ -113,7 +156,8 @@ export default async function ProductDetailPage({
                     </p>
                     <p className="mt-3 max-w-sm text-sm leading-7 text-muted">
                       Lorem ipsum dolor sit amet consectetur adipiscing elit
-                      faucibus orci penatibus.
+                      mauris nascetur commodo fringilla, viverra interdum
+                      pharetra magnis sociosqu blandit.
                     </p>
                   </div>
                 </div>
@@ -133,9 +177,9 @@ export default async function ProductDetailPage({
 
               <div>
                 <h2 className="max-w-4xl text-3xl font-bold leading-tight text-foreground md:text-5xl md:leading-[1.02]">
-                  Lorem ipsum dolor sit amet consectetur adipiscing elit
-                  faucibus orci penatibus, odio conubia litora bibendum metus
-                  praesent montes.
+                  Lorem ipsum dolor sit amet consectetur adipiscing elit mauris
+                  nascetur commodo fringilla, viverra interdum pharetra magnis
+                  sociosqu blandit.
                 </h2>
 
                 <div className="mt-8 grid gap-6 md:grid-cols-3">
@@ -143,21 +187,29 @@ export default async function ProductDetailPage({
                     <p className="font-display text-2xl tracking-[0.05em] text-foreground">
                       PRESENCIA
                     </p>
-                    <p className="mt-3 text-sm leading-7 text-muted">1</p>
+                    <p className="mt-3 text-sm leading-7 text-muted">
+                      Cada producto tiene que entrar fuerte antes del primer
+                      bocado.
+                    </p>
                   </div>
 
                   <div>
                     <p className="font-display text-2xl tracking-[0.05em] text-foreground">
                       SABOR
                     </p>
-                    <p className="mt-3 text-sm leading-7 text-muted">2</p>
+                    <p className="mt-3 text-sm leading-7 text-muted">
+                      Lo visual importa, pero nunca por encima de lo que pasa al
+                      probarlo.
+                    </p>
                   </div>
 
                   <div>
                     <p className="font-display text-2xl tracking-[0.05em] text-foreground">
                       REMATE
                     </p>
-                    <p className="mt-3 text-sm leading-7 text-muted">3</p>
+                    <p className="mt-3 text-sm leading-7 text-muted">
+                      No va de quedar bien. Va de que se acuerden.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -174,18 +226,17 @@ export default async function ProductDetailPage({
                 </p>
 
                 <h2 className="mt-4 font-display text-5xl leading-[0.86] tracking-[0.01em] text-foreground sm:text-6xl">
-                  PIEZAS
+                  PIEZA
                   <br />A MEDIDA
                 </h2>
               </div>
 
               <div className="lg:pl-10">
                 <p className="max-w-md text-base leading-8 text-muted">
-                  Lorem ipsum dolor sit amet consectetur adipiscing elit
-                  faucibus orci penatibus, odio conubia litora bibendum metus
-                  praesent.
+                  Lorem ipsum dolor sit amet consectetur adipiscing elit mauris
+                  nascetur commodo fringilla, viverra interdum pharetra magnis
+                  sociosqu blandit.
                 </p>
-
                 <Link
                   href="/contacto"
                   className="mt-8 inline-flex rounded-full border border-olive bg-background px-6 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-background transition duration-300 hover:-translate-y-0.5 hover:border-olive hover:bg-olive"

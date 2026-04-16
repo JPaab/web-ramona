@@ -5,6 +5,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import ThemeProvider from "@/components/providers/ThemeProvider";
 import ThemeTransitionOverlay from "@/components/layout/ThemeTransitionOverlay";
+import { CartProvider } from "@/components/cart/CartProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,13 +38,15 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${bebasNeue.variable} bg-background text-foreground antialiased`}
       >
-        <ThemeTransitionOverlay />
         <ThemeProvider>
-          <div className="flex min-h-screen flex-col">
-            <Header />
-            <div className="flex-1">{children}</div>
-            <Footer />
-          </div>
+          <CartProvider>
+            <ThemeTransitionOverlay />
+            <div className="flex min-h-screen flex-col">
+              <Header />
+              <div className="flex-1">{children}</div>
+              <Footer />
+            </div>
+          </CartProvider>
         </ThemeProvider>
       </body>
     </html>
